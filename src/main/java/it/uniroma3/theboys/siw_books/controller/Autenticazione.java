@@ -1,12 +1,17 @@
 package it.uniroma3.theboys.siw_books.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+
 
 import it.uniroma3.theboys.siw_books.model.Credenziali;
 import it.uniroma3.theboys.siw_books.model.Utente;
@@ -23,11 +28,15 @@ public class Autenticazione {
 	
 	@Autowired private UtenteService utenteService;
 
-
 	@GetMapping("/login")
-	public String getLogin(Model model) {
-		model.addAttribute("credenziali", new Credenziali());
-		return "login.html";
+	public String login(Model model) {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		if (authentication != null && authentication.isAuthenticated()
+				&& !(authentication instanceof AnonymousAuthenticationToken)) {
+			// Reindirizza l'utente a un'altra pagina se è già autenticato
+			return "redirect:/" + "checazzonesoio";
+		}
+		return "login.html"; // Mostra la pagina di login se non autenticato
 	}
 
 	@GetMapping("/registrazione")
