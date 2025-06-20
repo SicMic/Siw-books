@@ -65,7 +65,7 @@ public class Credenziali {
         return ruolo;
     }
 
-    public void setRuole(String ruolo) {
+    public void setRuolo(String ruolo) {
         this.ruolo = ruolo;
     }
 

@@ -1,35 +1,33 @@
 package it.uniroma3.theboys.siw_books.controller;
 
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
-import it.uniroma3.theboys.siw_books.model.Credenziali;
+import it.uniroma3.theboys.siw_books.service.LibroService;
 
 
 
 @Controller
 public class ProvaController {
 
-	// @GetMapping("/login")
-	// public String getLogin() {
-	// 	return "login.html";
-	// }
+	@Autowired private LibroService libroService;
 
-	@PostMapping("/login")
-	public String postLogin(Model model) {
-		
-		model.addAttribute("credenziali", new Credenziali());
-
-		return "dashboard.html";
+	@GetMapping("/index")
+	public String getVetrina(Model model) {
+		model.addAttribute("libri", libroService.getAllLibri());
+		return "index.html";
 	}
-	
 
-	@GetMapping("/registrazione")
-	public String getRegistrazione() {
-		return "registrazione.html";
+	@GetMapping("/libro/{idLibro}")
+	public String getLibro(Model model, @PathVariable("idLibro") Long idLibro) {
+		model.addAttribute("libro", libroService.getLibroById(idLibro));
+		return "libro.html";
 	}
+
+
 
 }

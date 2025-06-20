@@ -52,27 +52,13 @@ public class AuthConfiguration {
         httpSecurity
             .cors(cors -> cors.disable())
             .authorizeHttpRequests(requests -> requests
-                // Pagine pubbliche e risorse statiche
-                .requestMatchers(HttpMethod.GET, "/", "/index", "/login", "/areaRiservata/**", "/landingPage/**", "/favicon.ico").permitAll()
-                // Registrazione e login aperti a tutti (POST)
-                .requestMatchers(HttpMethod.GET, "/autore/registrazione/**").permitAll()
-                .requestMatchers(HttpMethod.GET, "/giocatore/registrazione/**").permitAll()
-                .requestMatchers(HttpMethod.POST, "/autore/registrazione").permitAll()
-                .requestMatchers(HttpMethod.POST, "/giocatore/registrazione").permitAll()
-                // Area amministrativa solo per autore
-                .requestMatchers("/autore/**").hasAuthority(ADMIN_ROLE)
-                // Endpoint di eliminazione raccolta
-                .requestMatchers(HttpMethod.POST, "/autore/prova").hasAuthority(ADMIN_ROLE)
-                // Area amministrativa solo per giocatore
-                .requestMatchers(HttpMethod.POST, "/autore/**").hasAuthority(ADMIN_ROLE)
-                .requestMatchers(HttpMethod.POST, "/giocatore/**").hasAuthority(UTENTE_ROLE)
-                // Tutte le altre richieste devono essere autenticate
+                .requestMatchers(HttpMethod.GET, "/index", "/libro", "/login", "/registrazione", "/vetrina", "/style.css", "/favicon.ico").permitAll()
                 .anyRequest().authenticated()
             )
             .formLogin(login -> login
                 .loginPage("/login")
                 .permitAll()
-                .defaultSuccessUrl("/success", true)
+                .defaultSuccessUrl("/area-riservata/vetrina", true)
                 .failureUrl("/login?error=true")
             )
             .logout(logout -> logout
