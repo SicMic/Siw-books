@@ -11,8 +11,8 @@ import jakarta.persistence.OneToOne;
 @Entity
 public class Credenziali {
 
-    public static final String AUTORE_ROLE = "UTENTE";
-	public static final String GIOCATORE_ROLE = "ADMIN";
+    public static final String ADMIN_ROLE = "ADMIN";
+	public static final String UTENTE_ROLE= "UTENTE";
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

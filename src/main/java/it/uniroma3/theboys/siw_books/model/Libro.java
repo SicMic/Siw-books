@@ -1,8 +1,8 @@
 package it.uniroma3.theboys.siw_books.model;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -10,7 +10,10 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.Lob;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -23,6 +26,18 @@ abstract public class Libro {
     @Column(nullable = false)
     private String titolo;
 
+    private Integer annoPubblicazione;
+
+    @Lob
+    @Column(nullable = true)
+    private byte[] immagine; // Campo per l'immagine
+
+    @ManyToMany 
+    private List<Autore> autori;
+
+    @OneToMany(mappedBy = "libro", cascade = CascadeType.ALL)
+    private List<Recensione> recensioni;
+
 
     public Long getId() {
         return id;
@@ -32,4 +47,45 @@ abstract public class Libro {
         this.id = id;
     }
 
+    public String getTitolo() {
+        return titolo;
+    }
+
+    public void setTitolo(String titolo) {
+        this.titolo = titolo;
+    }
+
+    public Integer getAnnoPubblicazione() {
+        return annoPubblicazione;
+    }
+
+    public void setAnnoPubblicazione(Integer annoPubblicazione) {
+        this.annoPubblicazione = annoPubblicazione;
+    }
+
+    public byte[] getImmagine() {
+        return immagine;
+    }
+
+    public void setImmagine(byte[] immagine) {
+        this.immagine = immagine;
+    }
+
+    public List<Autore> getAutori() {
+        return autori;
+    }
+
+    public void setAutori(List<Autore> autori) {
+        this.autori = autori;
+    }
+
+    public List<Recensione> getRecensioni() {
+        return recensioni;
+    }
+
+    public void setRecensioni(List<Recensione> recensioni) {
+        this.recensioni = recensioni;
+    }
+
+    
 }

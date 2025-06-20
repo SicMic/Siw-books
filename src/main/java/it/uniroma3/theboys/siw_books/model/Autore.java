@@ -1,7 +1,7 @@
 package it.uniroma3.theboys.siw_books.model;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -10,7 +10,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.ManyToMany;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -26,14 +26,14 @@ abstract public class Autore {
     @Column(nullable = false)
     private String cognome;
 
-    @Column(unique = true, nullable = false)
-    private String email;
+	private LocalDateTime dataNascita;
 
-    @Column(length = 500)
-    private String urlImage;
+    private LocalDateTime dataMorte;
 
-    @OneToOne
-    private Credenziali credenziali;
+    private String nazione;
+
+    @ManyToMany (mappedBy = "autori")
+    private List<Libro> libri;
 
     public Long getId() {
         return id;
@@ -59,30 +59,31 @@ abstract public class Autore {
         this.cognome = cognome;
     }
 
-    public String getEmail() {
-        return email;
+    public LocalDateTime getDataNascita() {
+        return dataNascita;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setDataNascita(LocalDateTime dataNascita) {
+        this.dataNascita = dataNascita;
     }
 
-    public Credenziali getCredenziali() {
-        return credenziali;
+    public LocalDateTime getDataMorte() {
+        return dataMorte;
     }
 
-    public void setCredenziali(Credenziali credenziali) {
-        this.credenziali = credenziali;
+    public void setDataMorte(LocalDateTime dataMorte) {
+        this.dataMorte = dataMorte;
     }
 
-    public String getUrlImage() {
-        return urlImage;
+    public String getNazione() {
+        return nazione;
     }
 
-    public void setUrlImage(String urlImage) {
-        this.urlImage = urlImage;
+    public void setNazione(String nazione) {
+        this.nazione = nazione;
     }
 
 
+    
 
 }
