@@ -8,12 +8,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class ProvaController {
 
-	@GetMapping("/login}")
+	@GetMapping("/login")
 	public String getLogin() {
 		return "login.html";
 	}
 
-	@GetMapping("/registrazione}")
+	@GetMapping("/registrazione")
 	public String getRegistrazione() {
 		return "registrazione.html";
 	}
