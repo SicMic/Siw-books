@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-SiwBooksApplication<siw-books>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "it.uniroma3.theboys.siw_books.SiwBooksApplication",
+            "projectName": "siw-books",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
