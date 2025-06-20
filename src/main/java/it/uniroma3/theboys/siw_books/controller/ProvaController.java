@@ -13,10 +13,10 @@ import it.uniroma3.theboys.siw_books.model.Credenziali;
 @Controller
 public class ProvaController {
 
-	@GetMapping("/login")
-	public String getLogin() {
-		return "login.html";
-	}
+	// @GetMapping("/login")
+	// public String getLogin() {
+	// 	return "login.html";
+	// }
 
 	@PostMapping("/login")
 	public String postLogin(Model model) {
