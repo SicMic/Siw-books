@@ -1,7 +1,7 @@
 # Read Me First
 The following was discovered as part of building this project:
 
-* The original package name 'theboys.siw-books' is invalid and this project uses 'theboys.siw_books' instead.
+* The original package name 'it.uniroma3.theboys.siw-books' is invalid and this project uses 'it.uniroma3.theboys.siw_books' instead.
 
 # Getting Started
 

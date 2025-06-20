@@ -8,7 +8,7 @@
 		<version>3.5.0</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>theboys</groupId>
+	<groupId>it.uniroma3.theboys</groupId>
 	<artifactId>siw-books</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>siw-books</name>
