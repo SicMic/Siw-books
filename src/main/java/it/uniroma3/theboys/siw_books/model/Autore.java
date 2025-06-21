@@ -29,6 +29,8 @@ public class Autore {
 
     private LocalDateTime dataMorte;
 
+    private String immagine;
+
     private String nazione;
 
     @ManyToMany (mappedBy = "autori")
@@ -93,5 +95,14 @@ public class Autore {
     public void setLibri(List<Libro> libri) {
         this.libri = libri;
     }
+
+    public String getImmagine() {
+        return immagine;
+    }
+
+    public void setImmagine(String immagine) {
+        this.immagine = immagine;
+    }
+
 
 }
