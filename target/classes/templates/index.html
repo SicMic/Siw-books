@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <title>Home</title>
+  <th:block th:replace="~{moduli/head :: head}"></th:block>
+</head>
+
+
+
+<body>
+
+  <!-- HEADER -->
+  <header class="main-header">
+    <div class="logo">
+      <!-- Sostituisci il testo con un'immagine se vuoi -->
+      <span>Logo</span>
+    </div>
+  </header>
+
+  <div class="vetrina-bg">
+    <div class="content">
+      <!-- <div class="welcome">Benvenuto nella Vetrina</div>
+        <div class="subtitle">Scopri i nostri prodotti esclusivi</div> -->
+
+      <div class="cards-container">
+        <div class="card" th:each="libro : ${libri}">
+          <div class="card-image" th:text="${libro.immagine}"></div>
+          <div class="card-body">
+            <h3 class="card-title" th:text="${libro.titolo}">Nome Libro</h3>
+            <p class="card-desc" th:text="${libro.descrizione}">Descrizione breve del prodotto 1.</p>
+            <button class="ghost-round full-width" th:href="@{'/libro/' + ${libro.id}}">Dettagli</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

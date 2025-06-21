@@ -1,11 +1,10 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:400,300,100,500);
 
-/* LOGIN E REGISTRAZIONI*/
-
 body,
 html {
   margin: 0;
   height: 100%;
+  /* background-color: #8CA6DB; */
   background: linear-gradient(#8CA6DB, #93d6b1);;
 }
 
@@ -97,7 +96,7 @@ button:focus {
   height: 100%;
 }
 
-.content-form {
+.content {
   padding: 0 25px;
   display: flex;
   flex-direction: column;
@@ -129,11 +128,10 @@ button:focus {
   flex-direction: column;
   box-shadow: 0px 15px 50px 10px rgba(0, 0, 0, 0.2);
   box-sizing: border-box;
-  height: auto;
+  height: 580px;
   width: 360px;
   background: url('https://pexels.imgix.net/photos/27718/pexels-photo-27718.jpg?fit=crop&w=1280&h=823') top left no-repeat;
   background-size: cover;
-  border-radius: 30px;
 }
 
 .overlay {
@@ -143,7 +141,6 @@ button:focus {
   position: absolute;
   width: 100%;
   z-index: 1;
-  border-radius: 30px;
 }
 
 .bold-line {
@@ -159,7 +156,18 @@ button:focus {
   z-index: 1;
 }
 
-/* VETRINA */
+@media (max-width: 500px) {
+  .window {
+    width: 100%;
+    height: 100%;
+  }
+
+  .overlay {
+    width: 100%;
+    height: 100%;
+  }
+}
+
 
 .vetrina-bg {
   min-height: 100vh;
@@ -226,9 +234,6 @@ button:focus {
   font-size: 0.95rem;
   font-weight: 300;
   color: #333;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  height: 50px;
 }
 
 .main-header {
@@ -237,7 +242,7 @@ button:focus {
   background-color: #e6eef9;
   display: flex;
   align-items: center;
-  justify-content: flex-start; 
+  justify-content: flex-start; /* Cambia in 'flex-end' per spostare il logo a destra */
   padding: 0 20px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   font-family: Roboto, sans-serif;
@@ -265,26 +270,23 @@ button:focus {
   z-index: 10;
 } */
 
-/* LOGO */
-
 .logo {
   font-weight: 500;
   font-size: 1.2rem;
   color: #1e1e1e;
 }
 
-/* LIBRO */
 
 .book-detail-container {
   display: flex;
-  margin-top: 80px; 
+  margin-top: 80px; /* spazio per l'header */
   margin-left: auto;
   margin-right: auto;
   padding: 40px;
   gap: 40px;
   justify-content: center;
   align-items: flex-start;
-  background-color: #e6eef9; 
+  background-color: #e6eef9; /* sostituisce il gradiente */
   color: #1e1e1e;
   font-family: Roboto, sans-serif;
   width: 80%;
@@ -322,4 +324,21 @@ button:focus {
   font-size: 1rem;
   font-weight: 300;
   line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+  .book-detail-container {
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  }
+
+  .book-image img {
+    width: 100%;
+    max-width: 250px;
+  }
+
+  .book-info {
+    text-align: center;
+  }
 }

@@ -16,7 +16,7 @@ public class ProvaController {
 
 	@Autowired private LibroService libroService;
 
-	@GetMapping("/index")
+	@GetMapping({"/", "/index"})
 	public String getVetrina(Model model) {
 		model.addAttribute("libri", libroService.getAllLibri());
 		return "index.html";

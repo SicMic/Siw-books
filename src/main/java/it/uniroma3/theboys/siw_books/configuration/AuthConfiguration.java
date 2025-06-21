@@ -1,5 +1,7 @@
 package it.uniroma3.theboys.siw_books.configuration;
 
+import javax.sql.DataSource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,14 +14,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-//import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
-
-import static it.uniroma3.theboys.siw_books.model.Credenziali.ADMIN_ROLE;
-import static it.uniroma3.theboys.siw_books.model.Credenziali.UTENTE_ROLE;
-
-//import static org.springframework.security.config.Customizer.withDefaults;
-
-import javax.sql.DataSource;
 
 @Configuration
 @EnableWebSecurity
@@ -52,7 +46,7 @@ public class AuthConfiguration {
         httpSecurity
             .cors(cors -> cors.disable())
             .authorizeHttpRequests(requests -> requests
-                .requestMatchers(HttpMethod.GET, "/index", "/libro", "/login", "/registrazione", "/vetrina", "/style.css", "/favicon.ico").permitAll()
+                .requestMatchers(HttpMethod.GET, "/index", "/libro/**", "/login", "/registrazione", "/vetrina", "/style.css", "/favicon.ico").permitAll()
                 .anyRequest().authenticated()
             )
             .formLogin(login -> login

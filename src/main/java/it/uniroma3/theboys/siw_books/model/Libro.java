@@ -8,16 +8,12 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.Inheritance;
-import jakarta.persistence.InheritanceType;
 import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToMany;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
-abstract public class Libro {
+public class Libro {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -31,6 +27,9 @@ abstract public class Libro {
     @Lob
     @Column(nullable = true)
     private byte[] immagine; // Campo per l'immagine
+
+    @Column(length= 2000)
+    private String descrizione;
 
     @ManyToMany 
     private List<Autore> autori;
@@ -85,6 +84,14 @@ abstract public class Libro {
 
     public void setRecensioni(List<Recensione> recensioni) {
         this.recensioni = recensioni;
+    }
+
+    public String getDescrizione() {
+        return descrizione;
+    }
+
+    public void setDescrizione(String descrizione) {
+        this.descrizione = descrizione;
     }
 
     

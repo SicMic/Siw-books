@@ -8,13 +8,10 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.Inheritance;
-import jakarta.persistence.InheritanceType;
 import jakarta.persistence.ManyToMany;
 
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
-abstract public class Autore {
+public class Autore {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+  <title>Dettagli libro</title>
+  <th:block th:replace="~{moduli/head :: head}"></th:block>
+</head>
+
+<body>
+  <!-- Header fisso -->
+  <header class="main-header">
+    <div class="logo">Libreria</div>
+  </header>
+
+  <!-- Contenuto principale -->
+  <div class="book-detail-container">
+    <div class="book-image">
+      <img th:text="${libro.immagine}" alt="Copertina libro">
+    </div>
+    <div class="book-info">
+      <h1 class="book-title" th:text="${libro.titolo}">Il titolo del libro</h1>
+      <h2 class="book-author" th:each="autore : ${libro.autori}" th:text="${autore.nome + ' ' + autore.cognome}">di Mario Rossi</h2>
+      <p class="book-description" th:text="libro.descrizione">
+        Questo è un riassunto o una descrizione del libro. Può contenere informazioni sull'autore, la trama, il genere,
+        e altri dettagli utili per l'utente.
+      </p>
+      <p><strong>Genere:</strong> Narrativa</p>
+      <p th:text="${libro.annoPubblicazione}"><strong>Anno:</strong> 2023</p>
+      <p><strong>ISBN:</strong> 123-456-789</p>
+
+      <button class="ghost-round">Aggiungi al carrello</button>
+    </div>
+  </div>
+</body>
+
+</html>

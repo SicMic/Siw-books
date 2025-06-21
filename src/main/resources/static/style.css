@@ -1,9 +1,12 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:400,300,100,500);
 
+/* LOGIN E REGISTRAZIONI*/
+
 body,
 html {
   margin: 0;
   height: 100%;
+  background: linear-gradient(#8CA6DB, #93d6b1);;
 }
 
 input {
@@ -90,11 +93,11 @@ button:focus {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #eee;
+  background: #e6eef9;
   height: 100%;
 }
 
-.content {
+.content-form {
   padding: 0 25px;
   display: flex;
   flex-direction: column;
@@ -126,10 +129,11 @@ button:focus {
   flex-direction: column;
   box-shadow: 0px 15px 50px 10px rgba(0, 0, 0, 0.2);
   box-sizing: border-box;
-  height: 580px;
+  height: auto;
   width: 360px;
   background: url('https://pexels.imgix.net/photos/27718/pexels-photo-27718.jpg?fit=crop&w=1280&h=823') top left no-repeat;
   background-size: cover;
+  border-radius: 30px;
 }
 
 .overlay {
@@ -139,6 +143,7 @@ button:focus {
   position: absolute;
   width: 100%;
   z-index: 1;
+  border-radius: 30px;
 }
 
 .bold-line {
@@ -154,14 +159,167 @@ button:focus {
   z-index: 1;
 }
 
-@media (max-width: 500px) {
-  .window {
-    width: 100%;
-    height: 100%;
-  }
+/* VETRINA */
 
-  .overlay {
-    width: 100%;
-    height: 100%;
-  }
+.vetrina-bg {
+  min-height: 100vh;
+  width: 100%;
+  background: linear-gradient(#8CA6DB, #93d6b1);
+  display: flex;
+  justify-content: center;
+  padding: 50px 20px;
+  box-sizing: border-box;
+}
+
+.content {
+  max-width: 1100px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-top: 30px;
+  justify-content: center;
+}
+
+.card {
+  background: #e6eef9;
+  border-radius: 15px;
+  overflow: hidden;
+  width: 280px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: scale(1.03);
+}
+
+.card-image {
+  height: 180px;
+  background-size: cover;
+  background-position: center;
+}
+
+.card-body {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.card-title {
+  margin: 0;
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: #1e1e1e;
+}
+
+.card-desc {
+  font-size: 0.95rem;
+  font-weight: 300;
+  color: #333;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  height: 50px;
+}
+
+.main-header {
+  width: 100%;
+  height: 60px;
+  background-color: #e6eef9;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; 
+  padding: 0 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  font-family: Roboto, sans-serif;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+}
+
+/* .main-header {
+  background-color: #e6eef9;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  font-family: Roboto, sans-serif;
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: #1e1e1e;
+  border-bottom: 1px solid #ccc;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 10;
+} */
+
+/* LOGO */
+
+.logo {
+  font-weight: 500;
+  font-size: 1.2rem;
+  color: #1e1e1e;
+}
+
+/* LIBRO */
+
+.book-detail-container {
+  display: flex;
+  margin-top: 80px; 
+  margin-left: auto;
+  margin-right: auto;
+  padding: 40px;
+  gap: 40px;
+  justify-content: center;
+  align-items: flex-start;
+  background-color: #e6eef9; 
+  color: #1e1e1e;
+  font-family: Roboto, sans-serif;
+  width: 80%;
+  align-self: center;
+}
+
+.book-image img {
+  max-width: 300px;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.book-info {
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.book-title {
+  font-size: 2rem;
+  font-weight: 500;
+  margin-bottom: 0;
+}
+
+.book-author {
+  font-size: 1.2rem;
+  font-weight: 300;
+  margin-top: 0;
+  color: #333;
+}
+
+.book-description {
+  font-size: 1rem;
+  font-weight: 300;
+  line-height: 1.5;
 }
