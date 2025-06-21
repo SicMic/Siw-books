@@ -80,7 +80,12 @@ public class Autore {
         this.nazione = nazione;
     }
 
+        public List<Libro> getLibri() {
+        return libri;
+    }
 
-    
+    public void setLibri(List<Libro> libri) {
+        this.libri = libri;
+    }
 
 }
