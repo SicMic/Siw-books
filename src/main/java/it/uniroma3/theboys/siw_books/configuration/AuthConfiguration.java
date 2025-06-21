@@ -50,7 +50,7 @@ public class AuthConfiguration {
         httpSecurity
             .cors(cors -> cors.disable())
             .authorizeHttpRequests(requests -> requests
-                .requestMatchers(HttpMethod.GET, "/index", "/libro/**", "/login", "/registrazione", "/vetrina", "/css/**", "/favicon.ico").permitAll()
+                .requestMatchers(HttpMethod.GET, "/**").permitAll()
                 .anyRequest().authenticated()
             )
             .formLogin(login -> login
