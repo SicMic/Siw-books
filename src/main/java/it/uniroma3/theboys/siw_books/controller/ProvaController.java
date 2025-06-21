@@ -37,7 +37,7 @@ public class ProvaController {
 		Autore autore = autoreService.getAutoreById(idAutore);
 		model.addAttribute("autori", autore);
 		model.addAttribute("libri", autore.getLibri());
-		return "libro.html";
+		return "autore.html";
 	}
 
 
