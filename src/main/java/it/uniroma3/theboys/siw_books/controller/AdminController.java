@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -67,8 +68,8 @@ public class AdminController {
 		return "redirect:/";
 	}
 
-	@PostMapping("/eliminazioneLibro")
-	public ResponseEntity<Map<String, String>> eliminazioneLibro(@RequestParam("idLibro") Long idLibro) {
+	@GetMapping("/eliminazioneLibro/{idLibro}")
+	public ResponseEntity<Map<String, String>> eliminazioneLibro(@PathVariable("idLibro") Long idLibro) {
 		Map<String, String> response = new HashMap<>();
 		if (idLibro == null || idLibro < 1) {
 			response.put("error", "ID Raccolta non valido");
