@@ -2,6 +2,7 @@ package it.uniroma3.theboys.siw_books.model;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+
 import java.util.List;
 
 import jakarta.persistence.Column;
@@ -68,6 +69,7 @@ public class Autore {
     }
 
     public String getDataMorte() {
+        if(this.dataMorte == null) return null;
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
         return dataMorte.format(formatter);
     }
