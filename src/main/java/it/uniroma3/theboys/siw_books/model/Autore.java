@@ -63,6 +63,7 @@ public class Autore {
     }
 
     public String getDataNascita() {
+        if(this.dataNascita == null) return null;
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
         return dataNascita.format(formatter);
     }
