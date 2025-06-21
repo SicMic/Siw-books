@@ -5,12 +5,14 @@ import java.time.format.DateTimeFormatter;
 
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Autore {
@@ -33,7 +35,7 @@ public class Autore {
 
     private String nazione;
 
-    @ManyToMany (mappedBy = "autori")
+    @ManyToMany (mappedBy = "autori", cascade = CascadeType.ALL)
     private List<Libro> libri;
 
     public Long getId() {
