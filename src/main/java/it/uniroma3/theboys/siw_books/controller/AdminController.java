@@ -1,6 +1,7 @@
 package it.uniroma3.theboys.siw_books.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,22 +33,23 @@ public class AdminController {
 	@GetMapping("/libroForm")
 	public String getAggiuntaNuovoLibro(Model model) {
 		model.addAttribute("libro", new Libro());
+		model.addAttribute("autori", autoreService.getAllAutori());
 		return "libroForm.html";
 	}
 
 	@PostMapping("/aggiuntaLibro")
-	public String postAggiuntaNuovoLibro(Model model, Libro libro) {
+	public String postAggiuntaNuovoLibro(Model model, Libro libro, @RequestParam("listaAutori") List<Long> autoriIds) {
 		this.libroService.saveNewLibro(libro);
 		return "redirect:/";
 	}
 
-	@GetMapping("/area-riservata/autoreForm")
+	@GetMapping("/autoreForm")
 	public String getAggiuntaNuovoAutore(Model model) {
 		model.addAttribute("autore", new Autore());
 		return "autoreForm.html";
 	}
 
-	@PostMapping("/area-riservata/aggiuntaAutore")
+	@PostMapping("/aggiuntaAutore")
 	public String psotAggiuntaNuovoAutore(Model model, Autore autore) {
 		this.autoreService.saveNewAutore(autore);
 		return "redirect:/";
