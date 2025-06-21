@@ -17,7 +17,7 @@
 
   <div class="vetrina-bg">
 
-    <div style="position: fixed; right: 40px; height: 100px; margin-top: 25px;">
+    <div style="position: fixed; right: 40px; height: 100px; margin-top: 25px;" th:if='${ruolo.equals("admin")}'>
       <a href="/libroForm">
         <button class="ghost-round">Nuovo Libro</button>
       </a>
@@ -32,8 +32,8 @@
             <div class="card-body">
               <h3 class="card-title" th:text="${libro.titolo}">Nome Libro</h3>
               <p class="card-desc" th:text="${libro.descrizione}">Descrizione breve del prodotto 1.</p>
-              <div>
-                <a th:href="@{'/eliminazioneLibro/' + ${libro.id}}"></a>
+              <div th:if='${ruolo.equals("admin")}'>
+                <a th:href="@{'/eliminazioneLibro/' + ${libro.id}}" style="color: red;">Elimina</a>
               </div>
             </div>
           </div>

@@ -262,6 +262,8 @@ button:focus {
   font-weight: 500;
   font-size: 1.2rem;
   color: #1e1e1e;
+  position: fixed;
+  left: 70px;
 }
 
 /* LIBRO */
@@ -319,4 +321,82 @@ button:focus {
   border: 1px solid black;
   border-radius: 10px;
   padding: 10px;
+}
+
+
+/* Hamburger menu */
+
+/* Toggle invisibile ma attivo */
+.menu-toggle {
+  display: none;
+}
+
+/* Icona hamburger */
+.hamburger {
+  position: fixed;
+  top: 15px;
+  left: 20px;
+  z-index: 21;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 22px;
+  cursor: pointer;
+}
+.hamburger span {
+  display: block;
+  height: 3px;
+  background-color: #1e1e1e;
+  border-radius: 2px;
+  transition: all .3s ease;
+}
+
+/* Menu a scomparsa */
+.hamburger-menu {
+  position: fixed;
+  top: 0;
+  left: -250px;
+  width: 230px;
+  height: 100%;
+  background-color: #e6eef9;
+  box-shadow: -4px 0 12px rgba(0,0,0,0.2);
+  z-index: 20;
+  padding-top: 60px; /* spazio per l'header */
+  transition: right .3s ease;
+}
+.hamburger-menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.hamburger-menu li {
+  margin-bottom: 20px;
+  text-align: center;
+}
+.hamburger-menu a {
+  text-decoration: none;
+  font-family: Roboto, sans-serif;
+  font-size: 1.2rem;
+  color: #1e1e1e;
+  transition: color .2s ease;
+}
+.hamburger-menu a:hover {
+  color: #8CA6DB;
+}
+
+/* Attivazione del menu */
+.menu-toggle:checked + .hamburger + .hamburger-menu {
+  left: 0;
+}
+
+/* Animazione hamburger → croce */
+.menu-toggle:checked + .hamburger span:nth-child(1) {
+  transform: translateY(9px) rotate(45deg);
+}
+.menu-toggle:checked + .hamburger span:nth-child(2) {
+  opacity: 0;
+}
+.menu-toggle:checked + .hamburger span:nth-child(3) {
+  transform: translateY(-9px) rotate(-45deg);
 }

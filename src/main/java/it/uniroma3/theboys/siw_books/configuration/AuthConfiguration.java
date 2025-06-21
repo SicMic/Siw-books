@@ -15,9 +15,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
-import static it.uniroma3.theboys.siw_books.model.Credenziali.ADMIN_ROLE;
-import static it.uniroma3.theboys.siw_books.model.Credenziali.UTENTE_ROLE;
-
 
 @Configuration
 @EnableWebSecurity
@@ -51,6 +48,7 @@ public class AuthConfiguration {
             .cors(cors -> cors.disable())
             .authorizeHttpRequests(requests -> requests
                 .requestMatchers(HttpMethod.GET, "/**").permitAll()
+                .requestMatchers(HttpMethod.POST, "/**").permitAll()
                 .anyRequest().authenticated()
             )
             .formLogin(login -> login

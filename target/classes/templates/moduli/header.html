@@ -3,9 +3,26 @@
 
 <header class="main-header" th:fragment="header">
     <div class="logo">Logo</div>
+
+    <!-- Username se loggato -->
     <div class="header-username" th:if="${userDetails != null}">
         <span th:text="${userDetails.username}">Username</span>
     </div>
+
+    <!-- Hamburger toggle + menu -->
+    <input type="checkbox" id="menu-toggle" class="menu-toggle" />
+    <label for="menu-toggle" class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+    </label>
+
+    <nav class="hamburger-menu">
+        <ul>
+            <li><a href="/index">Libri</a></li>
+            <li><a href="/autori">Autori</a></li>
+        </ul>
+    </nav>
 </header>
 
 
