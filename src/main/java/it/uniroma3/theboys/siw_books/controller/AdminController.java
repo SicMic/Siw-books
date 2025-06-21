@@ -69,69 +69,22 @@ public class AdminController {
 	}
 
 	@GetMapping("/eliminazioneLibro/{idLibro}")
-	public ResponseEntity<Map<String, String>> eliminazioneLibro(@PathVariable("idLibro") Long idLibro) {
-		Map<String, String> response = new HashMap<>();
-		if (idLibro == null || idLibro < 1) {
-			response.put("error", "ID Raccolta non valido");
-			return ResponseEntity.badRequest().body(response);
-		}
-		try {
-			if (libroService.getLibroById(idLibro) == null) {
-				response.put("error", "Raccolta non trovata nel database");
-				return ResponseEntity.ok(response);
-			}
-			this.libroService.deleteLibro(idLibro);
-			response.put("message", "Raccolta eliminata con successo");
-			return ResponseEntity.ok(response);
-		} catch (Exception e) {
-			response.put("error", "Errore durante l'eliminazione della raccolta: " +
-					e.getMessage());
-			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
-		}
+	public String eliminazioneLibro(@PathVariable("idLibro") Long idLibro) {
+		this.libroService.deleteLibro(idLibro);
+		return "redirect:/";
 	}
 
-	@PostMapping("/eliminazioneRecensione")
-	public ResponseEntity<Map<String, String>> eliminazioneRecensione(@RequestParam("idRecensione") Long idRecensione) {
-		Map<String, String> response = new HashMap<>();
-		if (idRecensione == null || idRecensione < 1) {
-			response.put("error", "ID Raccolta non valido");
-			return ResponseEntity.badRequest().body(response);
-		}
-		try {
-			if (recensioneService.getRecensioneById(idRecensione) == null) {
-				response.put("error", "Raccolta non trovata nel database");
-				return ResponseEntity.ok(response);
-			}
-			this.recensioneService.deleteRecensione(idRecensione);
-			response.put("message", "Raccolta eliminata con successo");
-			return ResponseEntity.ok(response);
-		} catch (Exception e) {
-			response.put("error", "Errore durante l'eliminazione della raccolta: " +
-					e.getMessage());
-			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
-		}
+	@GetMapping("/eliminazioneRecensione/{idRecensione}")
+	public String eliminazioneRecensione(@PathVariable("idRecensione") Long idRecensione) {
+		this.recensioneService.deleteRecensione(idRecensione);
+		return "redirect:/recensioni";
 	}
 
-	@PostMapping("/eliminazioneAutore")
-	public ResponseEntity<Map<String, String>> eliminazioneAutore(@RequestParam("idAutore") Long idAutore) {
-		Map<String, String> response = new HashMap<>();
-		if (idAutore == null || idAutore < 1) {
-			response.put("error", "ID Raccolta non valido");
-			return ResponseEntity.badRequest().body(response);
-		}
-		try {
-			if (autoreService.getAutoreById(idAutore) == null) {
-				response.put("error", "Raccolta non trovata nel database");
-				return ResponseEntity.ok(response);
-			}
-			this.autoreService.deleteAutore(idAutore);
-			response.put("message", "Raccolta eliminata con successo");
-			return ResponseEntity.ok(response);
-		} catch (Exception e) {
-			response.put("error", "Errore durante l'eliminazione della raccolta: " +
-					e.getMessage());
-			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
-		}
+	@GetMapping("/eliminazioneAutore/{idAutore}")
+	public String eliminazioneAutore(@PathVariable("idAutore") Long idAutore) {
+		this.autoreService.deleteAutore(idAutore);
+		return "redirect:/autori";
 	}
+
 
 }
