@@ -1,6 +1,5 @@
 package it.uniroma3.theboys.siw_books.controller;
 
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -17,30 +16,56 @@ import it.uniroma3.theboys.siw_books.service.LibroService;
 import it.uniroma3.theboys.siw_books.service.RecensioneService;
 import it.uniroma3.theboys.siw_books.model.Autore;
 import it.uniroma3.theboys.siw_books.model.Libro;
+import it.uniroma3.theboys.siw_books.model.Recensione;
 import it.uniroma3.theboys.siw_books.service.AutoreService;
-
 
 @Controller
 public class AdminController {
 
-    @Autowired private LibroService libroService;
-	@Autowired private RecensioneService recensioneService;
-	@Autowired private AutoreService autoreService;
+	@Autowired
+	private LibroService libroService;
+	@Autowired
+	private RecensioneService recensioneService;
+	@Autowired
+	private AutoreService autoreService;
 
+	@GetMapping("/libroForm")
+	public String getAggiuntaNuovoLibro(Model model) {
+		model.addAttribute("libro", new Libro());
+		return "libroForm.html";
+	}
 
-	@PostMapping("/area-riservata/aggiuntaLibro")
-	public String aggiuntaNuovoQuizAutore(Model model, Libro libro){
+	@PostMapping("/aggiuntaLibro")
+	public String postAggiuntaNuovoLibro(Model model, Libro libro) {
 		this.libroService.saveNewLibro(libro);
-		return "redirect:/libro/" + libro.getId();
+		return "redirect:/";
+	}
+
+	@GetMapping("/area-riservata/autoreForm")
+	public String getAggiuntaNuovoAutore(Model model) {
+		model.addAttribute("autore", new Autore());
+		return "autoreForm.html";
 	}
 
 	@PostMapping("/area-riservata/aggiuntaAutore")
-	public String aggiuntaNuovoQuizAutore(Model model, Autore autore){
+	public String psotAggiuntaNuovoAutore(Model model, Autore autore) {
 		this.autoreService.saveNewAutore(autore);
 		return "redirect:/";
 	}
 
-    @PostMapping("/area-riservata/eliminazioneLibro")
+	@GetMapping("/recensioneForm")
+	public String getAggiuntaNuovaRecensione(Model model) {
+		model.addAttribute("recensione", new Recensione());
+		return "recensioneForm.html";
+	}
+
+	@PostMapping("/aggiuntaRecensione")
+	public String postAggiuntaNuovaRecensione(Model model, Recensione recensione) {
+		this.recensioneService.saveNewRecensione(recensione);
+		return "redirect:/";
+	}
+
+	@PostMapping("/eliminazioneLibro")
 	public ResponseEntity<Map<String, String>> eliminazioneLibro(@RequestParam("idLibro") Long idLibro) {
 		Map<String, String> response = new HashMap<>();
 		if (idLibro == null || idLibro < 1) {
@@ -62,8 +87,7 @@ public class AdminController {
 		}
 	}
 
-
-    @PostMapping("/area-riservata/eliminazioneRecensione")
+	@PostMapping("/eliminazioneRecensione")
 	public ResponseEntity<Map<String, String>> eliminazioneRecensione(@RequestParam("idRecensione") Long idRecensione) {
 		Map<String, String> response = new HashMap<>();
 		if (idRecensione == null || idRecensione < 1) {
@@ -85,8 +109,7 @@ public class AdminController {
 		}
 	}
 
-
-    @PostMapping("/area-riservata/eliminazioneAutore")
+	@PostMapping("/eliminazioneAutore")
 	public ResponseEntity<Map<String, String>> eliminazioneAutore(@RequestParam("idAutore") Long idAutore) {
 		Map<String, String> response = new HashMap<>();
 		if (idAutore == null || idAutore < 1) {
@@ -107,6 +130,5 @@ public class AdminController {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
 		}
 	}
-
 
 }

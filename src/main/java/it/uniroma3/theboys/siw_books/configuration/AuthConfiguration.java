@@ -51,14 +51,12 @@ public class AuthConfiguration {
             .cors(cors -> cors.disable())
             .authorizeHttpRequests(requests -> requests
                 .requestMatchers(HttpMethod.GET, "/index", "/libro/**", "/login", "/registrazione", "/vetrina", "/css/**", "/favicon.ico").permitAll()
-                .requestMatchers(HttpMethod.GET, "/area-riservata/**").hasAnyAuthority(ADMIN_ROLE, UTENTE_ROLE)
-                .requestMatchers(HttpMethod.POST, "/area-riservata/**").hasAnyAuthority(ADMIN_ROLE, UTENTE_ROLE)
                 .anyRequest().authenticated()
             )
             .formLogin(login -> login
                 .loginPage("/login")
                 .permitAll()
-                .defaultSuccessUrl("/area-riservata/vetrina", true)
+                .defaultSuccessUrl("/index", true)
                 .failureUrl("/login?error=true")
             )
             .logout(logout -> logout
