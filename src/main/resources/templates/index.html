@@ -13,11 +13,18 @@
   <!-- HEADER -->
   <th:block th:replace="~{moduli/header :: header}"></th:block>
 
-  <div class="vetrina-bg">
-    <div class="content">
-      <!-- <div class="welcome">Benvenuto nella Vetrina</div>
-        <div class="subtitle">Scopri i nostri prodotti esclusivi</div> -->
 
+
+  <div class="vetrina-bg">
+
+    <div style="position: fixed; right: 40px; height: 100px; margin-top: 25px;">
+      <a href="/libroForm">
+        <button class="ghost-round">Nuovo Libro</button>
+      </a>
+    </div>
+
+
+    <div class="content" style="position: fixed; margin-top: 60px;">
       <div class="cards-container">
         <a th:each="libro : ${libri}" th:href="@{'/libro/' + ${libro.id}}" style="text-decoration: none;">
           <div class="card">
@@ -26,7 +33,7 @@
               <h3 class="card-title" th:text="${libro.titolo}">Nome Libro</h3>
               <p class="card-desc" th:text="${libro.descrizione}">Descrizione breve del prodotto 1.</p>
               <div>
-                <a th:href="@{'area-riservata/eliminazioneLibro/' + ${libro.id}}"></a>
+                <a th:href="@{'/eliminazioneLibro/' + ${libro.id}}"></a>
               </div>
             </div>
           </div>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <title>Nuovo Autore</title>
+    <th:block th:replace="~{moduli/head :: head}"></th:block>
+</head>
+
+<body>
+    <!-- Header fisso -->
+    <th:block th:replace="~{moduli/header :: header}"></th:block>
+
+    <!-- Contenuto principale -->
+    <div class="book-detail-container">
+        <form action="/aggiuntaAutore" th:object="${autore}" method="post">
+            <!-- <div class="book-image">
+                <img th:text="${libro.immagine}" alt="Copertina libro">
+            </div> -->
+            <div class="book-info">
+                <input class="book-title admin-input" th:field="${autore.nome}" placeholder="Nome autore"/>
+                <input class="book-title admin-input" th:field="${autore.cognome}" placeholder="Cognome autore"/>
+                <input class="book-description admin-input" th:field="${autore.dataNascita}" placeholder="Data di nascita"/>
+                <input class="book-description admin-input" th:field="${autore.dataMorte}" placeholder="Data di morte"/>
+                <input class="book-description admin-input" th:field="${autore.nazionalita}" placeholder="Nazionalità"/>
+
+                <button type="submit" class="ghost-round">Aggiungi autore</button>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>
