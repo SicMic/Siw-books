@@ -29,7 +29,7 @@
           <div class="card-body">
             <h3 class="card-title" th:text="${libro.titolo}">Nome Libro</h3>
             <p class="card-desc" th:text="${libro.descrizione}">Descrizione breve del prodotto 1.</p>
-            <button class="ghost-round full-width" th:href="@{'/libro/' + ${libro.id}}">Dettagli</button>
+            <a class="ghost-round full-width" th:href="@{'/libro/' + ${libro.id}}">Dettagli</a>
           </div>
         </div>
 

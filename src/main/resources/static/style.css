@@ -172,7 +172,7 @@ button:focus {
 }
 
 .content {
-  max-width: 1100px;
+  max-width: 2000px;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -191,7 +191,7 @@ button:focus {
   background: #e6eef9;
   border-radius: 15px;
   overflow: hidden;
-  width: 280px;
+  width: 300px;
   display: flex;
   flex-direction: column;
   box-shadow: 0 5px 15px rgba(0,0,0,0.2);
@@ -226,9 +226,12 @@ button:focus {
   font-size: 0.95rem;
   font-weight: 300;
   color: #333;
-  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
   overflow: hidden;
-  height: 50px;
+  text-overflow: ellipsis;
+  max-height: 4.5rem;
 }
 
 .main-header {

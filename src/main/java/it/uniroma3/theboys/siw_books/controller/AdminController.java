@@ -13,19 +13,35 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import it.uniroma3.theboys.siw_books.model.Credenziali;
-
-import it.uniroma3.theboys.siw_books.service.LibroService;;
+import it.uniroma3.theboys.siw_books.service.LibroService;
+import it.uniroma3.theboys.siw_books.service.RecensioneService;
+import it.uniroma3.theboys.siw_books.model.Autore;
+import it.uniroma3.theboys.siw_books.model.Libro;
+import it.uniroma3.theboys.siw_books.service.AutoreService;
 
 
 @Controller
 public class AdminController {
 
-
     @Autowired private LibroService libroService;
+	@Autowired private RecensioneService recensioneService;
+	@Autowired private AutoreService autoreService;
 
-    @PostMapping("/autore/eliminazioneRaccolta")
-	public ResponseEntity<Map<String, String>> eliminazioneRaccoltaAutore(@RequestParam("idLibro") Long idLibro) {
+
+	@PostMapping("/area-riservata/aggiuntaLibro")
+	public String aggiuntaNuovoQuizAutore(Model model, Libro libro){
+		this.libroService.saveNewLibro(libro);
+		return "redirect:/libro/" + libro.getId();
+	}
+
+	@PostMapping("/area-riservata/aggiuntaAutore")
+	public String aggiuntaNuovoQuizAutore(Model model, Autore autore){
+		this.autoreService.saveNewAutore(autore);
+		return "redirect:/";
+	}
+
+    @PostMapping("/area-riservata/eliminazioneLibro")
+	public ResponseEntity<Map<String, String>> eliminazioneLibro(@RequestParam("idLibro") Long idLibro) {
 		Map<String, String> response = new HashMap<>();
 		if (idLibro == null || idLibro < 1) {
 			response.put("error", "ID Raccolta non valido");
@@ -45,5 +61,52 @@ public class AdminController {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
 		}
 	}
+
+
+    @PostMapping("/area-riservata/eliminazioneRecensione")
+	public ResponseEntity<Map<String, String>> eliminazioneRecensione(@RequestParam("idRecensione") Long idRecensione) {
+		Map<String, String> response = new HashMap<>();
+		if (idRecensione == null || idRecensione < 1) {
+			response.put("error", "ID Raccolta non valido");
+			return ResponseEntity.badRequest().body(response);
+		}
+		try {
+			if (recensioneService.getRecensioneById(idRecensione) == null) {
+				response.put("error", "Raccolta non trovata nel database");
+				return ResponseEntity.ok(response);
+			}
+			this.recensioneService.deleteRecensione(idRecensione);
+			response.put("message", "Raccolta eliminata con successo");
+			return ResponseEntity.ok(response);
+		} catch (Exception e) {
+			response.put("error", "Errore durante l'eliminazione della raccolta: " +
+					e.getMessage());
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
+		}
+	}
+
+
+    @PostMapping("/area-riservata/eliminazioneAutore")
+	public ResponseEntity<Map<String, String>> eliminazioneAutore(@RequestParam("idAutore") Long idAutore) {
+		Map<String, String> response = new HashMap<>();
+		if (idAutore == null || idAutore < 1) {
+			response.put("error", "ID Raccolta non valido");
+			return ResponseEntity.badRequest().body(response);
+		}
+		try {
+			if (autoreService.getAutoreById(idAutore) == null) {
+				response.put("error", "Raccolta non trovata nel database");
+				return ResponseEntity.ok(response);
+			}
+			this.autoreService.deleteAutore(idAutore);
+			response.put("message", "Raccolta eliminata con successo");
+			return ResponseEntity.ok(response);
+		} catch (Exception e) {
+			response.put("error", "Errore durante l'eliminazione della raccolta: " +
+					e.getMessage());
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
+		}
+	}
+
 
 }
