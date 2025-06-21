@@ -1,6 +1,7 @@
 package it.uniroma3.theboys.siw_books.model;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import jakarta.persistence.Column;
@@ -56,16 +57,19 @@ public class Autore {
         this.cognome = cognome;
     }
 
-    public LocalDateTime getDataNascita() {
-        return dataNascita;
+    public String getDataNascita() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+        return dataNascita.format(formatter);
     }
+
 
     public void setDataNascita(LocalDateTime dataNascita) {
         this.dataNascita = dataNascita;
     }
 
-    public LocalDateTime getDataMorte() {
-        return dataMorte;
+    public String getDataMorte() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+        return dataMorte.format(formatter);
     }
 
     public void setDataMorte(LocalDateTime dataMorte) {
