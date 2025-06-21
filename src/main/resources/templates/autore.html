@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Dettagli autore</title>
+    <th:block th:replace="~{moduli/head :: head}"></th:block>
+</head>
+
+<body>
+    <!-- Header fisso -->
+    <th:block th:replace="~{moduli/header :: header}"></th:block>
+
+    <!-- Contenuto principale -->
+    <div class="book-detail-container">
+        <!-- <div class="book-image">
+      <img th:src="${autore.immagine}" alt="Foto autore" />
+    </div> -->
+
+        <div class="book-info">
+            <h1 class="book-title" th:text="${autore.nome + ' ' + autore.cognome}">Nome Cognome</h1>
+
+            <p><strong>Data di nascita:</strong> <span th:text="${autore.dataNascita}">01/01/1900</span></p>
+            <p th:if="${autore.dataMorte != null}"><strong>Data di morte:</strong> <span th:text="${autore.dataMorte != null ? autore.dataMorte : 'Ancora in vita'}">01/01/2000</span></p>
+            <p><strong>Nazione:</strong> <span th:text="${autore.nazione}">Italia</span></p>
+
+            <ul>
+                <li th:each="libro : ${libri}">
+                    <a th:href="@{'/libro/' + ${libro.id}}" th:text="${libro.titolo}">Titolo Libro</a>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+</body>
+
+</html>

@@ -35,7 +35,7 @@ public class ProvaController {
 	@GetMapping("/autore/{idAutore}")
 	public String getAutore(Model model, @PathVariable("idAutore") Long idAutore) {
 		Autore autore = autoreService.getAutoreById(idAutore);
-		model.addAttribute("autori", autore);
+		model.addAttribute("autore", autore);
 		model.addAttribute("libri", autore.getLibri());
 		return "autore.html";
 	}
