@@ -24,6 +24,8 @@ public class Libro {
 
     private Integer annoPubblicazione;
 
+    private String isbn;
+    
     @Lob
     @Column(nullable = true)
     private byte[] immagine; // Campo per l'immagine
@@ -93,6 +95,15 @@ public class Libro {
     public void setDescrizione(String descrizione) {
         this.descrizione = descrizione;
     }
+
+    public String getIsbn() {
+        return isbn;
+    }
+
+    public void setIsbn(String isbn) {
+        this.isbn = isbn;
+    }
+
 
     
 }
