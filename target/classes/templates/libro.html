@@ -8,9 +8,7 @@
 
 <body>
   <!-- Header fisso -->
-  <header class="main-header">
-    <div class="logo">Libreria</div>
-  </header>
+  <th:block th:replace="~{moduli/header :: header}"></th:block>
 
   <!-- Contenuto principale -->
   <div class="book-detail-container">
@@ -20,7 +18,7 @@
     <div class="book-info">
       <h1 class="book-title" th:text="${libro.titolo}">Il titolo del libro</h1>
       <h2 class="book-author" th:each="autore : ${libro.autori}" th:text="${autore.nome + ' ' + autore.cognome}">di Mario Rossi</h2>
-      <p class="book-description" th:text="libro.descrizione">
+      <p class="book-description" th:text="${libro.descrizione}">
         Questo è un riassunto o una descrizione del libro. Può contenere informazioni sull'autore, la trama, il genere,
         e altri dettagli utili per l'utente.
       </p>

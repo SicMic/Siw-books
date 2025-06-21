@@ -11,12 +11,7 @@
 <body>
 
   <!-- HEADER -->
-  <header class="main-header">
-    <div class="logo">
-      <!-- Sostituisci il testo con un'immagine se vuoi -->
-      <span>Logo</span>
-    </div>
-  </header>
+  <th:block th:replace="~{moduli/header :: header}"></th:block>
 
   <div class="vetrina-bg">
     <div class="content">
@@ -24,15 +19,18 @@
         <div class="subtitle">Scopri i nostri prodotti esclusivi</div> -->
 
       <div class="cards-container">
-        <div class="card" th:each="libro : ${libri}">
-          <div class="card-image" th:text="${libro.immagine}"></div>
-          <div class="card-body">
-            <h3 class="card-title" th:text="${libro.titolo}">Nome Libro</h3>
-            <p class="card-desc" th:text="${libro.descrizione}">Descrizione breve del prodotto 1.</p>
-            <a class="ghost-round full-width" th:href="@{'/libro/' + ${libro.id}}">Dettagli</a>
+        <a th:each="libro : ${libri}" th:href="@{'/libro/' + ${libro.id}}" style="text-decoration: none;">
+          <div class="card">
+            <div class="card-image" th:text="${libro.immagine}"></div>
+            <div class="card-body">
+              <h3 class="card-title" th:text="${libro.titolo}">Nome Libro</h3>
+              <p class="card-desc" th:text="${libro.descrizione}">Descrizione breve del prodotto 1.</p>
+              <div>
+                <a th:href="@{'area-riservata/eliminazioneLibro/' + ${libro.id}}"></a>
+              </div>
+            </div>
           </div>
-        </div>
-
+        </a>
       </div>
     </div>
   </div>

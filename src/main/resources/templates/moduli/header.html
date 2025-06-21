@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<header class="main-header" th:fragment="header">
+    <div class="logo">Logo</div>
+    <div class="header-username" th:if="${userDetails != null}">
+        <span th:text="${userDetails.username}">Username</span>
+    </div>
+</header>
+
+
+</html>
