@@ -28,7 +28,7 @@
       <div class="cards-container">
         <a th:each="libro : ${libri}" th:href="@{'/libro/' + ${libro.id}}" style="text-decoration: none;">
           <div class="card">
-            <div class="card-image" th:text="${libro.immagine}"></div>
+            <div class="card-image" th:text="${libro.copertina}"></div>
             <div class="card-body">
               <h3 class="card-title" th:text="${libro.titolo}">Nome Libro</h3>
               <p class="card-desc" th:text="${libro.descrizione}">Descrizione breve del prodotto 1.</p>
