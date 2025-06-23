@@ -7,6 +7,7 @@
     <!-- Username se loggato -->
     <div class="header-username" th:if="${userDetails != null}">
         <span th:text="${userDetails.username}">Username</span>
+        <span><a href="/logout">Logout</a></span>
     </div>
     <div class="header-username" th:if="${userDetails==null}">
         <span><a href="/login">Login</a></span>
