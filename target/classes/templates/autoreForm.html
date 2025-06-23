@@ -12,13 +12,17 @@
 
     <!-- Contenuto principale -->
     <div class="book-detail-container">
-        <form action="/aggiuntaAutore" th:object="${autore}" method="post">
+        <form action="/aggiuntaAutore" th:object="${autore}" method="post" enctype="multipart/form-data">
             <!-- <div class="book-image">
                 <img th:text="${libro.immagine}" alt="Copertina libro">
             </div> -->
             <div class="book-info">
                 <input type="text" class="book-title admin-input" th:field="${autore.nome}" placeholder="Nome autore"/>
                 <input type="text" class="book-title admin-input" th:field="${autore.cognome}" placeholder="Cognome autore"/>
+                <label>Foto autore</label>
+                <div class="book-image">
+                    <input type="file" name="copertinaFile" accept="image/*" />
+                </div>
                 <label>Data di nascita</label>
                 <input type="date" class="book-description admin-input" th:field="${autore.dataNascita}"/>
                 <label>Data di morte</label>
