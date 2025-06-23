@@ -12,18 +12,18 @@
 
     <!-- Contenuto principale -->
     <div class="book-detail-container">
-        <form action="/aggiuntaLibro" th:object="${libro}" method="post">
+        <form action="/aggiuntaLibro" th:object="${libro}" method="post" enctype="multipart/form-data">
             <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
             <div class="book-info">
                 <input class="book-title admin-input" th:field="${libro.titolo}" placeholder="Titolo libro" />
                 <textarea class="book-description admin-input" th:field="${libro.descrizione}" placeholder="Descrizione libro"></textarea>
                 <input class="admin-input" th:field="${libro.annoPubblicazione}" placeholder="Anno pubblicazione" />
-                <!-- <div class="book-image">
-                    <input type="file" name="copertina" accept="image/*" />
-                </div> -->
-                <!-- <select name="listaAutori" multiple style="height: 150px;">
+                <div class="book-image">
+                    <input type="file" name="copertinaFile" accept="image/*" />
+                </div>
+                <select name="listaAutori" multiple style="height: 150px;">
                     <option th:each="autore : ${autori}" th:text="${autore.nome + ' ' + autore.cognome}" th:value="${autore.id}"></option>
-                </select> -->
+                </select>
 
                 <button type="submit" class="ghost-round">Aggiungi libro</button>
             </div>

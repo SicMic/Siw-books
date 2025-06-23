@@ -1,15 +1,11 @@
 package it.uniroma3.theboys.siw_books.controller;
 
 import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,12 +15,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import it.uniroma3.theboys.siw_books.service.LibroService;
-import it.uniroma3.theboys.siw_books.service.RecensioneService;
 import it.uniroma3.theboys.siw_books.model.Autore;
 import it.uniroma3.theboys.siw_books.model.Libro;
 import it.uniroma3.theboys.siw_books.model.Recensione;
 import it.uniroma3.theboys.siw_books.service.AutoreService;
+import it.uniroma3.theboys.siw_books.service.LibroService;
+import it.uniroma3.theboys.siw_books.service.RecensioneService;
 
 @Controller
 public class AdminController {
@@ -44,29 +40,33 @@ public class AdminController {
 	}
 
 	@PostMapping("/aggiuntaLibro")
-	public String aggiungiLibro(@ModelAttribute Libro libro /*, @RequestParam("copertina") MultipartFile copertina*/) {
-		// Salva l'immagine nel filesystem o nel database
-		// if (!copertina.isEmpty()) {
-		// 	try {
-		// 		// Ottieni il nome originale del file
-		// 		String nomeFile = copertina.getOriginalFilename();
-		// 		// Specifica il percorso dove salvare l'immagine
-		// 		Path percorso = Paths.get("/copertine/" + nomeFile);
-		// 		// Salva il file
-		// 		copertina.transferTo(percorso);
-		// 		// Imposta il percorso dell'immagine nel libro
-		// 		libro.setCopertina(percorso.toString());
-		// 	} catch (IOException e) {
-		// 		e.printStackTrace();
-		// 		// Gestisci l'errore
-		// 	}
-		// }
+public String aggiungiLibro(@ModelAttribute Libro libro, 
+                            @RequestParam("copertinaFile") MultipartFile copertinaFile) {
+    if (!copertinaFile.isEmpty()) {
+        try {
+            // Salva il file nella cartella "copertine" dentro /static/images (es. src/main/resources/static/images/copertine)
+            String nomeFile = System.currentTimeMillis() + "_" + copertinaFile.getOriginalFilename();
+            Path percorso = Paths.get("/src/main/resources/static/images/copertine/" + nomeFile);
 
-		// Salva il libro nel database
-		libroService.saveNewLibro(libro);
+            // Assicura che la directory esista
+            Files.createDirectories(percorso.getParent());
 
-		return "redirect:/index"; // Reindirizza a una pagina di conferma o elenco libri
-	}
+            // Salva il file
+            Files.write(percorso, copertinaFile.getBytes());
+
+            // Imposta il path (visibile via web) nel libro
+            libro.setCopertina("/images/copertine/" + nomeFile);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            // Puoi aggiungere logging o messaggi di errore nel model
+        }
+    }
+
+    libroService.saveNewLibro(libro);
+    return "redirect:/index";
+}
+
 
 	@GetMapping("/autoreForm")
 	public String getAggiuntaNuovoAutore(Model model) {

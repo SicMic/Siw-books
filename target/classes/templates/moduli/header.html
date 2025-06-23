@@ -8,6 +8,10 @@
     <div class="header-username" th:if="${userDetails != null}">
         <span th:text="${userDetails.username}">Username</span>
     </div>
+    <div class="header-username" th:if="${userDetails==null}">
+        <span><a href="/login">Login</a></span>
+        <span><a href="/registrazione">Registrati</a></span>
+    </div>
 
     <!-- Hamburger toggle + menu -->
     <input type="checkbox" id="menu-toggle" class="menu-toggle" />

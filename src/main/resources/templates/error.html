@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Pagina non trovata</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <style>
+    body, html {
+      margin: 0;
+      height: 100%;
+      background-color: #e6eef9;
+      font-family: 'Roboto', sans-serif;
+    }
+
+    .error-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      text-align: center;
+      color: #1e1e1e;
+      /* padding: 20px; */
+    }
+
+    .error-title {
+      font-size: 6rem;
+      font-weight: 300;
+      margin: 0;
+    }
+
+    .error-message {
+      font-size: 1.5rem;
+      font-weight: 300;
+      margin: 20px 0;
+    }
+
+    .ghost-round {
+      cursor: pointer;
+      background: none;
+      border: 1px solid #1e1e1e;
+      border-radius: 25px;
+      color: #1e1e1e;
+      font-size: 1.2rem;
+      font-weight: 300;
+      padding: 10px 30px;
+      text-decoration: none;
+      transition: all .2s ease;
+      align-self: center;
+    }
+
+    .ghost-round:hover {
+      background: rgba(0, 0, 0, 0.1);
+      color: #000;
+    }
+  </style>
+</head>
+
+<body>
+  <th:block th:replace="~{moduli/header :: header}"></th:block>
+
+  <div class="error-container">
+    <h1 class="error-title">404</h1>
+    <p class="error-message">Oops! La pagina che stai cercando non esiste.</p>
+    <a th:href="@{/}" class="ghost-round">Torna alla Home</a>
+  </div>
+</body>
+</html>

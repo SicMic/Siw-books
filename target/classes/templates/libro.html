@@ -17,7 +17,7 @@
     </div>
     <div class="book-info">
       <h1 class="book-title" th:text="${libro.titolo}">Il titolo del libro</h1>
-      <h2 class="book-author" th:each="autore : ${libro.autori}" th:text="${autore.nome + ' ' + autore.cognome}">Mario Rossi</h2>
+      <h2 class="book-author" th:each="autore : ${libro.autori}"><a th:href="@{'/autore/'+${autore.id}}" th:text="${autore.nome + ' ' + autore.cognome}">Mario Rossi</a></h2>
       <p class="book-description" th:text="${libro.descrizione}">
         Questo è un riassunto o una descrizione del libro. Può contenere informazioni sull'autore, la trama, il genere,
         e altri dettagli utili per l'utente.
