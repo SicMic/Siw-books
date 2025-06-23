@@ -34,14 +34,26 @@
         <strong>ISBN:</strong>
         <span th:text="${libro.isbn}">123 312 111 21</span>
       </div>
-      <div>
+
+      <div class="book-reviews">
+        <strong>Recensioni:</strong>
+        <div class="review" th:each="recensione : ${libro.recensioni}">
+          <div class="review-header">
+            <strong th:text="${recensione.titolo}">Titolo</strong>
+            <span class="rating" th:text="'Voto: ' + ${recensione.voto} + '/5'">Voto: 5/5</span>
+          </div>
+          <p th:text="${recensione.testo}">Testo della recensione...</p>
+        </div>
+      </div>
+
+      <!-- <div>
         <strong>Recensioni:</strong>
         <ul>
           <li th:each="recensione : ${libro.recensioni}">
             <a th:text="${recensione.titolo}" th:href="@{'/recensione/' + ${recensione.id}}"></a>
           </li>
         </ul>
-      </div>
+      </div> -->
 
     </div>
   </div>
