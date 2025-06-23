@@ -1,5 +1,8 @@
 package it.uniroma3.theboys.siw_books.controller;
 
+import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,9 +13,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import it.uniroma3.theboys.siw_books.service.LibroService;
 import it.uniroma3.theboys.siw_books.service.RecensioneService;
@@ -39,9 +44,28 @@ public class AdminController {
 	}
 
 	@PostMapping("/aggiuntaLibro")
-	public String postAggiuntaNuovoLibro(Model model, Libro libro, @RequestParam("listaAutori") List<Long> autoriIds) {
-		this.libroService.saveNewLibro(libro);
-		return "redirect:/";
+	public String aggiungiLibro(@ModelAttribute Libro libro, @RequestParam("copertina") MultipartFile copertina) {
+		// Salva l'immagine nel filesystem o nel database
+		if (!copertina.isEmpty()) {
+			try {
+				// Ottieni il nome originale del file
+				String nomeFile = copertina.getOriginalFilename();
+				// Specifica il percorso dove salvare l'immagine
+				Path percorso = Paths.get("/copertine/" + nomeFile);
+				// Salva il file
+				copertina.transferTo(percorso);
+				// Imposta il percorso dell'immagine nel libro
+				libro.setCopertina(percorso.toString());
+			} catch (IOException e) {
+				e.printStackTrace();
+				// Gestisci l'errore
+			}
+		}
+
+		// Salva il libro nel database
+		libroService.saveNewLibro(libro);
+
+		return "redirect:/libri"; // Reindirizza a una pagina di conferma o elenco libri
 	}
 
 	@GetMapping("/autoreForm")
@@ -85,6 +109,5 @@ public class AdminController {
 		this.autoreService.deleteAutore(idAutore);
 		return "redirect:/autori";
 	}
-
 
 }

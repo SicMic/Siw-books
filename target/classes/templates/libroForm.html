@@ -12,18 +12,14 @@
 
     <!-- Contenuto principale -->
     <div class="book-detail-container">
-        <form action="/aggiuntaLibro" th:object="${libro}" method="post">
-            <!-- <div class="book-image">
-                <img th:text="${libro.immagine}" alt="Copertina libro">
-            </div> -->
+        <form action="/aggiuntaLibro" th:object="${libro}" method="post" enctype="multipart/form-data">
             <div class="book-info">
                 <input class="book-title admin-input" th:field="${libro.titolo}" placeholder="Titolo libro" />
-                <!-- <input class="book-author" th:field="${autori}" placeholder=""/> -->
                 <textarea class="book-description admin-input" th:field="${libro.descrizione}" placeholder="Descrizione libro"></textarea>
-                <!-- <p><strong>Genere:</strong> Narrativa</p> -->
                 <input class="admin-input" th:field="${libro.annoPubblicazione}" placeholder="Anno pubblicazione" />
-                <!-- <p><strong>ISBN:</strong> 123-456-789</p> -->
-
+                <div class="book-image">
+                    <input type="file" th:field="${libro.immagine}" accept="image/*" />
+                </div>
                 <select name="listaAutori" multiple style="height: 150px;">
                     <option th:each="autore : ${autori}" th:text="${autore.nome + ' ' + autore.cognome}" th:value="${autore.id}"></option>
                 </select>
@@ -31,6 +27,7 @@
                 <button type="submit" class="ghost-round">Aggiungi libro</button>
             </div>
         </form>
+
     </div>
 </body>
 

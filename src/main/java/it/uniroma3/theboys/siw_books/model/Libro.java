@@ -8,7 +8,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 
@@ -29,9 +28,7 @@ public class Libro {
 
     private String genere;
     
-    @Lob
-    @Column(nullable = true)
-    private byte[] immagine; // Campo per l'immagine
+    private String copertina;
 
     @Column(length= 2000)
     private String descrizione;
@@ -65,14 +62,6 @@ public class Libro {
 
     public void setAnnoPubblicazione(Integer annoPubblicazione) {
         this.annoPubblicazione = annoPubblicazione;
-    }
-
-    public byte[] getImmagine() {
-        return immagine;
-    }
-
-    public void setImmagine(byte[] immagine) {
-        this.immagine = immagine;
     }
 
     public List<Autore> getAutori() {
@@ -113,6 +102,14 @@ public class Libro {
 
     public void setGenere(String genere) {
         this.genere = genere;
+    }
+
+    public String getCopertina() {
+        return copertina;
+    }
+
+    public void setCopertina(String copertina) {
+        this.copertina = copertina;
     }
 
     
