@@ -9,7 +9,7 @@ INSERT INTO utente (id, credenziali_id, nome, cognome, email) VALUES (2, 2, 'Mic
 INSERT INTO utente (id, credenziali_id, nome, cognome, email) VALUES (3, 3, 'Filippo', 'Maialino', 'filor@example.com')
 
 -- AUTORI
-INSERT INTO autore (id, nome, cognome, immagine, data_nascita, nazione) VALUES (1, 'Gabriel', 'Garcia Marquez', '1927-03-06', 'Colombia');
+INSERT INTO autore (id, nome, cognome, immagine, data_nascita, nazione) VALUES (1, 'Gabriel', 'Garcia Marquez', 'uploads/autori/gg.png' '1927-03-06', 'Colombia');
 INSERT INTO autore (id, nome, cognome, immagine, data_nascita, nazione) VALUES (2, 'J.K.', 'Rowling', 'uploads/autori/rowling.png', '1965-07-31', 'Regno Unito');
 INSERT INTO autore (id, nome, cognome, immagine, data_nascita, nazione) VALUES (3, 'George', 'Orwell', 'uploads/autori/orwell.png' , '1903-06-25', 'Regno Unito');
 INSERT INTO autore (id, nome, cognome, immagine, data_nascita, nazione) VALUES (4, 'Harper', 'Lee', 'uploads/autori/lee.png', '1926-04-28', 'Stati Uniti');

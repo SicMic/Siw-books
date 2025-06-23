@@ -80,12 +80,6 @@ public String aggiungiLibro(@ModelAttribute Libro libro,
 		return "redirect:/";
 	}
 
-	@GetMapping("/recensioneForm")
-	public String getAggiuntaNuovaRecensione(Model model) {
-		model.addAttribute("recensione", new Recensione());
-		return "recensioneForm.html";
-	}
-
 	@PostMapping("/aggiuntaRecensione")
 	public String postAggiuntaNuovaRecensione(Model model, Recensione recensione) {
 		this.recensioneService.saveNewRecensione(recensione);
