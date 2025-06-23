@@ -5,10 +5,13 @@
 body,
 html {
   margin: 0;
-  height: 100%;
+  max-height: 200%;
   background: linear-gradient(#8CA6DB, #93d6b1);
-  ;
+  background-size: 100% 100%; /* Adatta il gradiente all'intera area */
+  background-repeat: no-repeat; /* Impedisce la ripetizione del background */
+  padding: 10px;
 }
+
 
 input {
   border: none;
@@ -204,7 +207,7 @@ button:focus {
 }
 
 .card-image {
-  height: 180px;
+  height: 160px;
   background-size: cover;
   background-position: center;
 }
@@ -213,7 +216,8 @@ button:focus {
   padding: 20px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  justify-content: end;
+  gap: 20px;
   background: rgba(255, 255, 255, 0.8); /* Sfondo semi-trasparente */
   backdrop-filter: blur(10px); /* Sfocatura dello sfondo */
   border-radius: 8px; /* Opzionale: angoli arrotondati */
@@ -460,7 +464,8 @@ button:focus {
 
 /* Form recensione */
 .review-form {
-  margin-top: 2rem;
+  width: 40%;
+  margin-top: 5rem;
 }
 
 .review-form h4 {

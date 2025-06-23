@@ -30,12 +30,15 @@
             <div class="card-image">
               <img style="width: 300px;" th:src="@{'/' + ${libro.copertina}}" alt="Copertina libro" />
             </div>
-            <div class="card-body" >
+            <div class="card-body">
               <h3 class="card-title" th:text="${libro.titolo}">Nome Libro</h3>
               <p class="card-desc" th:text="${libro.descrizione}">Descrizione breve del prodotto 1.</p>
-              <div th:if='${ruolo.equals("admin")}'>
-                <a th:href="@{'/eliminazioneLibro/' + ${libro.id}}" style="color: red;">Elimina</a>
-              </div>
+
+              <form th:action="@{'/eliminazioneLibro/' + ${libro.id}}" method="get" style="display: block;">
+                <input type="hidden" name="id" th:value="${libro.id}" />
+                <button style="width: 100%; border-radius: 10px; border: 1px solid black; background-color:white; color: red" type="submit" class="btn btn-danger">Elimina</button>
+              </form>
+
             </div>
           </div>
         </a>
