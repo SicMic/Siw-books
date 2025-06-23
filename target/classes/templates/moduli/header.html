@@ -2,7 +2,11 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <header class="main-header" th:fragment="header">
-    <div class="logo">Logo</div>
+   <div class="logo">
+        <a href="/index">
+            <img style="width: 60px;" src="/favicon.ico" alt="">
+        </a>
+    </div>
 
     <!-- Username se loggato -->
     <div class="header-username" th:if="${userDetails != null}">

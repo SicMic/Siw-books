@@ -13,8 +13,9 @@
   <!-- Contenuto principale -->
   <div class="book-detail-container">
     <div class="book-image">
-      <img th:text="${libro.copertina}" alt="Copertina libro">
+      <img th:src="@{'/uploads/' + ${libro.copertina}}" alt="Copertina libro" />
     </div>
+
     <div class="book-info">
       <h1 class="book-title" th:text="${libro.titolo}">Il titolo del libro</h1>
       <h2 class="book-author" th:each="autore : ${libro.autori}"><a th:href="@{'/autore/'+${autore.id}}" th:text="${autore.nome + ' ' + autore.cognome}">Mario Rossi</a></h2>
