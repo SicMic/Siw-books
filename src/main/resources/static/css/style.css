@@ -273,18 +273,27 @@ button:focus {
 
 .book-detail-container {
   display: flex;
+  flex-direction: column;
   margin-top: 80px;
   margin-left: auto;
   margin-right: auto;
   padding: 40px;
   gap: 40px;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
   background-color: #e6eef9;
   color: #1e1e1e;
   font-family: Roboto, sans-serif;
   width: 80%;
   align-self: center;
+}
+
+
+.book-top {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .book-image img {
