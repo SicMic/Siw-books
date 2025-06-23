@@ -46,7 +46,7 @@ public String aggiungiLibro(@ModelAttribute Libro libro,
         try {
             // Salva il file nella cartella "copertine" dentro /static/images (es. src/main/resources/static/images/copertine)
             String nomeFile = System.currentTimeMillis() + "_" + copertinaFile.getOriginalFilename();
-            Path percorso = Paths.get("uploads/" + nomeFile);
+            Path percorso = Paths.get("uploads/copertine/" + nomeFile);
 
             // Assicura che la directory esista
             Files.createDirectories(percorso.getParent());
@@ -55,7 +55,7 @@ public String aggiungiLibro(@ModelAttribute Libro libro,
             Files.write(percorso, copertinaFile.getBytes());
 
             // Imposta il path (visibile via web) nel libro
-            libro.setCopertina("uploads/" + nomeFile);
+            libro.setCopertina("uploads/copertine/" + nomeFile);
 
         } catch (IOException e) {
             e.printStackTrace();

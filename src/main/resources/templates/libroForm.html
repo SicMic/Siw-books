@@ -18,6 +18,8 @@
                 <input class="book-title admin-input" th:field="${libro.titolo}" placeholder="Titolo libro" />
                 <textarea class="book-description admin-input" th:field="${libro.descrizione}" placeholder="Descrizione libro"></textarea>
                 <input class="admin-input" th:field="${libro.annoPubblicazione}" placeholder="Anno pubblicazione" />
+                <input class="admin-input" th:field="${libro.genere}" placeholder="Genere libro" />
+                <input class="admin-input" th:field="${libro.isbn}" placeholder="ISBN libro" />
                 <div class="book-image">
                     <input type="file" name="copertinaFile" accept="image/*" />
                 </div>

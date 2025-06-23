@@ -13,6 +13,8 @@
     <!-- Contenuto principale -->
     <div class="book-detail-container">
         <form action="/aggiuntaAutore" th:object="${autore}" method="post" enctype="multipart/form-data">
+            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+
             <!-- <div class="book-image">
                 <img th:text="${libro.immagine}" alt="Copertina libro">
             </div> -->

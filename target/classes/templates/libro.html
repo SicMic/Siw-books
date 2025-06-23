@@ -13,7 +13,7 @@
   <!-- Contenuto principale -->
   <div class="book-detail-container">
     <div class="book-image">
-      <img th:src="@{'/uploads/' + ${libro.copertina}}" alt="Copertina libro" />
+      <img th:src="@{'/' + ${libro.copertina}}" alt="Copertina libro" />
     </div>
 
     <div class="book-info">
@@ -33,6 +33,14 @@
       <div>
         <strong>ISBN:</strong>
         <span th:text="${libro.isbn}">123 312 111 21</span>
+      </div>
+      <div>
+        <strong>Recensioni:</strong>
+        <ul>
+          <li th:each="recensione : ${libro.recensioni}">
+            <a th:text="${recensione.titolo}" th:href="@{'/recensione/' + ${recensione.id}}"></a>
+          </li>
+        </ul>
       </div>
 
     </div>

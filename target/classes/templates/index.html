@@ -28,9 +28,9 @@
         <a th:each="libro : ${libri}" th:href="@{'/libro/' + ${libro.id}}" style="text-decoration: none;">
           <div class="card">
             <div class="card-image">
-              <img style="width: 300px;" th:src="@{'/uploads/' + ${libro.copertina}}" alt="Copertina libro" />
+              <img style="width: 300px;" th:src="@{'/' + ${libro.copertina}}" alt="Copertina libro" />
             </div>
-            <div class="card-body">
+            <div class="card-body" >
               <h3 class="card-title" th:text="${libro.titolo}">Nome Libro</h3>
               <p class="card-desc" th:text="${libro.descrizione}">Descrizione breve del prodotto 1.</p>
               <div th:if='${ruolo.equals("admin")}'>

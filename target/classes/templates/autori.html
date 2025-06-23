@@ -27,9 +27,11 @@
     <div class="content" style="position: fixed; margin-top: 60px;">
       <div class="cards-container">
         <a th:each="autore : ${autori}" th:href="@{'/autore/' + ${autore.id}}" style="text-decoration: none;">
-          <div class="card">
-            <!-- <div class="card-image" th:text="${autore.immagine}"></div> -->
-            <div class="card-body">
+          <div class="card" style="height: 400px;">
+            <div class="card-image">
+              <img style="width: 300px;" th:src="@{'/uploads/' + ${autore.immagine}}" alt="Copertina libro" />
+            </div>
+            <div class="card-body" style="margin-top: 150px;">
               <h3 class="card-title" th:text="${autore.nome} + ' ' + ${autore.cognome}">Nome Libro</h3>
               <div th:if='${ruolo.equals("admin")}'>
                 <a th:href="@{'/eliminazioneAutore/' + ${autore.id}}" style="color: red;">Elimina</a>

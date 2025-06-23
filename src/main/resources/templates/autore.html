@@ -12,9 +12,9 @@
 
     <!-- Contenuto principale -->
     <div class="book-detail-container">
-        <!-- <div class="book-image">
-      <img th:src="${autore.immagine}" alt="Foto autore" />
-    </div> -->
+    <div class="book-image">
+      <img th:src="@{'/uploads/' + ${autore.immagine}}" alt="Copertina libro" />
+    </div>
 
         <div class="book-info">
             <h1 class="book-title" th:text="${autore.nome + ' ' + autore.cognome}">Nome Cognome</h1>
