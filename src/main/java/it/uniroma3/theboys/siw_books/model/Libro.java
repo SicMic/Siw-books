@@ -26,6 +26,8 @@ public class Libro {
     private Integer annoPubblicazione;
 
     private String isbn;
+
+    private String genere;
     
     @Lob
     @Column(nullable = true)
@@ -105,6 +107,13 @@ public class Libro {
         this.isbn = isbn;
     }
 
+    public String getGenere() {
+        return genere;
+    }
+
+    public void setGenere(String genere) {
+        this.genere = genere;
+    }
 
     
 }

@@ -22,9 +22,17 @@
         Questo è un riassunto o una descrizione del libro. Può contenere informazioni sull'autore, la trama, il genere,
         e altri dettagli utili per l'utente.
       </p>
-      <p><strong>Genere:</strong> Narrativa</p>
-      <p th:text="${libro.annoPubblicazione}"><strong>Anno:</strong> 2023</p>
-      <p th:text="${libro.isbn}"><strong>ISBN:</strong> 123-456-789</p>
+      <div><strong>Genere:</strong>
+        <span th:text="${libro.genere}"></span>
+      </div>
+      <div>
+        <strong>Anno:</strong>
+        <span th:text="${libro.annoPubblicazione}">2000</span>
+      </div>
+      <div>
+        <strong>ISBN:</strong>
+        <span th:text="${libro.isbn}">123 312 111 21</span>
+      </div>
 
     </div>
   </div>
