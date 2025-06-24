@@ -16,6 +16,11 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 
+import static it.uniroma3.theboys.siw_books.model.Credenziali.ADMIN_ROLE;
+import static it.uniroma3.theboys.siw_books.model.Credenziali.UTENTE_ROLE;
+;
+
+
 @Configuration
 @EnableWebSecurity
 public class AuthConfiguration {
@@ -47,8 +52,10 @@ public class AuthConfiguration {
         httpSecurity
             .cors(cors -> cors.disable())
             .authorizeHttpRequests(requests -> requests
-                .requestMatchers(HttpMethod.GET, "/**").permitAll()
-                .requestMatchers(HttpMethod.POST, "/**").permitAll()
+                .requestMatchers(HttpMethod.GET, "/index", "/libro/**", "/autore/**", "/autori/**", "/registrazione/**", "/favicon.ico", "/css/style.css", "/uploads/**").permitAll()
+                .requestMatchers(HttpMethod.GET, "/eliminazioneRecensione/**", "/modificaAutore/**", "/eliminazioneAutore/**", "/modificaLibro/**", "eliminazioneLibro/**", "/autoreForm/**", "/libroForm/**").hasAuthority(ADMIN_ROLE)
+                .requestMatchers(HttpMethod.POST, "/aggiuntaAutore/**", "/aggiuntaLibro/**", "/modificaAutore/**", "/modificaLibro/" ).hasAuthority(ADMIN_ROLE)
+                .requestMatchers(HttpMethod.POST, "/aggiuntaRecensione/**").hasAuthority(UTENTE_ROLE)
                 .anyRequest().authenticated()
             )
             .formLogin(login -> login

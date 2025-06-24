@@ -11,13 +11,13 @@
   <th:block th:replace="~{moduli/header :: header}"></th:block>
 
 
-      <div style="z-index: 3; width: 100%;  position: fixed; height: 60px; margin-top: 40px; backdrop-filter: blur(2px); background-color: rgba(255, 255, 255, 0.001);" th:if='${ruolo.equals("admin")}'>
-      <div style="z-index: 100; position: fixed; right: 40px; margin-top: 15px;">
-        <a th:href="@{'/libroForm/' + ${libro.id}}">
-          <button class="ghost-round" style="background-color: rgba(255, 255, 255, 0.451);">Modifica Libro</button>
-        </a>
-      </div>
+  <div style="z-index: 3; width: 100%;  position: fixed; height: 60px; margin-top: 40px; backdrop-filter: blur(2px); background-color: rgba(255, 255, 255, 0.001);" th:if='${ruolo.equals("admin")}'>
+    <div style="z-index: 100; position: fixed; right: 40px; margin-top: 15px;">
+      <a th:href="@{'/modificaLibro/' + ${libro.id}}">
+        <button class="ghost-round" style="background-color: rgba(255, 255, 255, 0.451);">Modifica Libro</button>
+      </a>
     </div>
+  </div>
 
 
   <!-- Contenuto principale -->
@@ -29,7 +29,11 @@
 
       <div class="book-info">
         <h1 class="book-title" th:text="${libro.titolo}">Il titolo del libro</h1>
-        <h2 class="book-author" th:each="autore : ${libro.autori}"><a th:href="@{'/autore/'+${autore.id}}" th:text="${autore.nome + ' ' + autore.cognome}">Mario Rossi</a></h2>
+        <div>
+          <strong class="book-authors" th:each="autore : ${libro.autori}">
+            <a th:href="@{'/autore/'+${autore.id}}" th:text="${autore.nome + ' ' + autore.cognome}">Mario Rossi</a>
+          </strong>
+        </div>
         <p class="book-description" th:text="${libro.descrizione}">
           Questo è un riassunto o una descrizione del libro. Può contenere informazioni sull'autore, la trama, il genere,
           e altri dettagli utili per l'utente.
@@ -69,7 +73,7 @@
       </form>
     </div>
 
-    <div class="book-reviews">
+    <div th:if="${!libro.recensioni.isEmpty()}" class="book-reviews">
       <h3>Recensioni:</h3>
       <div class="review" th:each="recensione : ${libro.recensioni}">
         <div class="review-header">

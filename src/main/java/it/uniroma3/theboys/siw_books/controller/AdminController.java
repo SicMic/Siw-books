@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -41,7 +43,8 @@ public class AdminController {
 
 	@PostMapping("/aggiuntaLibro")
 	public String aggiungiLibro(@ModelAttribute Libro libro,
-			@RequestParam("copertinaFile") MultipartFile copertinaFile) {
+			@RequestParam("copertinaFile") MultipartFile copertinaFile, 
+			        @RequestParam("listaAutori") List<Long> listaAutori)  {
 		if (!copertinaFile.isEmpty()) {
 			try {
 				// Salva il file nella cartella "copertine" dentro /static/images (es.
@@ -62,6 +65,17 @@ public class AdminController {
 				e.printStackTrace();
 				// Puoi aggiungere logging o messaggi di errore nel model
 			}
+		}
+
+		if (listaAutori != null && !listaAutori.isEmpty()) {
+			List<Autore> autoriSelezionati = new ArrayList<>();
+			for (Long autoreId : listaAutori) {
+				Autore autore = autoreService.getAutoreById(autoreId);
+				if (autore != null) {
+					autoriSelezionati.add(autore);
+				}
+			}
+			libro.setAutori(autoriSelezionati);
 		}
 
 		libroService.saveNewLibro(libro);
@@ -125,7 +139,6 @@ public class AdminController {
 	@GetMapping("/modificaAutore/{idAutore}")
 	public String modificaAutore(Model model, @PathVariable("idAutore") Long idAutore) {
 		model.addAttribute("autore", autoreService.getAutoreById(idAutore));
-		model.addAttribute("immagineAutore",autoreService.getAutoreById(idAutore).getImmagine() );
 		return "modificaAutore";
 	}
 
@@ -152,10 +165,10 @@ public class AdminController {
 				e.printStackTrace();
 				// Puoi aggiungere logging o messaggi di errore nel model
 			}
+		} else {
+			autore.setImmagine((String) autoreService.getAutoreById(autore.getId()).getImmagine());
 		}
-		else {
-			autore.setImmagine((String) model.getAttribute("immagineAutore"));
-		}
+
 		this.autoreService.saveNewAutore(autore);
 		return "redirect:/autori";
 	}
@@ -189,6 +202,8 @@ public class AdminController {
 				e.printStackTrace();
 				// Puoi aggiungere logging o messaggi di errore nel model
 			}
+		} else {
+			libro.setCopertina((String) libroService.getLibroById(libro.getId()).getCopertina());
 		}
 		libroService.saveNewLibro(libro);
 		return "redirect:/index";
