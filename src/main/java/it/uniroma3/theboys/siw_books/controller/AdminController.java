@@ -21,6 +21,7 @@ import it.uniroma3.theboys.siw_books.model.Recensione;
 import it.uniroma3.theboys.siw_books.service.AutoreService;
 import it.uniroma3.theboys.siw_books.service.LibroService;
 import it.uniroma3.theboys.siw_books.service.RecensioneService;
+import jakarta.servlet.http.HttpServletRequest;
 
 @Controller
 public class AdminController {
@@ -81,9 +82,10 @@ public String aggiungiLibro(@ModelAttribute Libro libro,
 	}
 
 	@PostMapping("/aggiuntaRecensione")
-	public String postAggiuntaNuovaRecensione(Model model, Recensione recensione) {
+	public String postAggiuntaNuovaRecensione(Model model, Recensione recensione, HttpServletRequest request) {
 		this.recensioneService.saveNewRecensione(recensione);
-		return "redirect:/";
+        String referer = request.getHeader("Referer");
+        return "redirect:" + referer; // Reindirizza alla pagina precedente	
 	}
 
 	@GetMapping("/eliminazioneLibro/{idLibro}")
@@ -93,9 +95,11 @@ public String aggiungiLibro(@ModelAttribute Libro libro,
 	}
 
 	@GetMapping("/eliminazioneRecensione/{idRecensione}")
-	public String eliminazioneRecensione(@PathVariable("idRecensione") Long idRecensione) {
+	public String eliminazioneRecensione(@PathVariable("idRecensione") Long idRecensione,  HttpServletRequest request) {
 		this.recensioneService.deleteRecensione(idRecensione);
-		return "redirect:/recensioni";
+        // Reindirizza alla pagina precedente
+        String referer = request.getHeader("Referer");
+        return "redirect:" + referer; // Reindirizza alla pagina precedente	
 	}
 
 	@GetMapping("/eliminazioneAutore/{idAutore}")

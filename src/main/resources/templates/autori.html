@@ -17,19 +17,21 @@
 
   <div class="vetrina-bg">
 
-    <div style="position: fixed; right: 40px; height: 100px; margin-top: 25px;" th:if='${ruolo.equals("admin")}'>
-      <a href="/autoreForm">
-        <button class="ghost-round">Nuovo Autore</button>
-      </a>
+    <div style="z-index: 10; width: 100%;  position: fixed; height: 60px; margin-top: -10px; backdrop-filter: blur(2px); background-color: rgba(255, 255, 255, 0.001);" th:if='${ruolo.equals("admin")}'>
+      <div style="z-index: 100; position: fixed; right: 40px; margin-top: 15px;">
+        <a href="/libroForm">
+          <button class="ghost-round" style="background-color: rgba(255, 255, 255, 0.451);">Nuovo Libro</button>
+        </a>
+      </div>
     </div>
 
 
-    <div class="content" style="position: fixed; margin-top: 60px;">
+    <div class="content" style="position: static; margin-top: 60px; overflow-y: scroll;">
       <div class="cards-container">
         <a th:each="autore : ${autori}" th:href="@{'/autore/' + ${autore.id}}" style="text-decoration: none;">
           <div class="card" style="height: 400px;">
             <div class="card-image">
-              <img style="width: 300px;" th:src="@{'/' + ${autore.immagine}}" alt="Copertina libro" />
+              <img style="width: 330px;" th:src="@{'/' + ${autore.immagine}}" alt="Copertina libro" />
             </div>
             <div class="card-body" style="margin-top: 150px;">
               <h3 class="card-title" th:text="${autore.nome} + ' ' + ${autore.cognome}">Nome Libro</h3>

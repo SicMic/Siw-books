@@ -58,13 +58,16 @@
     </div>
 
     <div class="book-reviews">
-      <strong>Recensioni:</strong>
+      <h3>Recensioni:</h3>
       <div class="review" th:each="recensione : ${libro.recensioni}">
         <div class="review-header">
           <strong th:text="${recensione.titolo}">Titolo</strong>
           <span class="rating" th:text="'Voto: ' + ${recensione.voto} + '/5'">Voto: 5/5</span>
         </div>
         <p th:text="${recensione.testo}">Testo della recensione...</p>
+        <form th:if="${ruolo.equals('admin')}" th:action="@{'/eliminazioneRecensione/' + ${recensione.id}}" method="get">
+          <button style="width: 100%; border-radius: 10px; border: 1px solid black; background-color:white; color: red" type="submit" class="btn btn-danger">Elimina</button>
+        </form>
       </div>
     </div>
 

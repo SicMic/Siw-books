@@ -17,7 +17,7 @@ import it.uniroma3.theboys.siw_books.service.RecensioneService;
 
 
 @Controller
-public class ProvaController {
+public class Pagine {
 
 	@Autowired private LibroService libroService;
 	@Autowired private AutoreService autoreService;
