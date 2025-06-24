@@ -31,7 +31,7 @@
         <a th:each="autore : ${autori}" th:href="@{'/autore/' + ${autore.id}}" style="text-decoration: none;">
           <div class="card" style="height: 410px;">
             <div class="card-image">
-              <img style="width: 330px;" th:src="@{'/' + ${autore.immagine}}" alt="Copertina libro" />
+              <img style="width: 330px;" th:src="@{'/' + ${autore.immagine}}" alt="Immagine autore" />
             </div>
             <div class="card-body" style="margin-top: 150px;">
               <h3 class="card-title" th:text="${autore.nome} + ' ' + ${autore.cognome}">Nome Libro</h3>

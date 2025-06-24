@@ -38,6 +38,8 @@ public class Pagine {
 	public String getLibro(Model model, @PathVariable("idLibro") Long idLibro) {
 		model.addAttribute("libro", libroService.getLibroById(idLibro));
 		model.addAttribute("recensioneNuova", new Recensione());
+		boolean esisteRecensione = libroService.getLibroById(idLibro).getRecensioni().stream().anyMatch(r -> r.getUtente().equals(model.getAttribute("utente")));
+		model.addAttribute("esisteRecensione", esisteRecensione);
 		return "libro.html";
 	}
 

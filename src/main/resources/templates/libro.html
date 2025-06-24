@@ -38,7 +38,7 @@
       </div>
     </div>
 
-    <div class="review-form" th:if="${userDetails != null}">
+    <div class="review-form" th:if="${userDetails!=null && !esisteRecensione && !ruolo.equals('admin')}">
       <h4>Lascia una recensione</h4>
       <form action="/aggiuntaRecensione" method="post" th:object="${recensioneNuova}">
         <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
