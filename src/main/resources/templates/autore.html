@@ -12,7 +12,7 @@
 
     <div style="z-index: 3; width: 100%;  position: fixed; height: 60px; margin-top: 40px; backdrop-filter: blur(2px); background-color: rgba(255, 255, 255, 0.001);" th:if='${ruolo.equals("admin")}'>
       <div style="z-index: 100; position: fixed; right: 40px; margin-top: 15px;">
-        <a th:href="@{'/autoreForm/' + ${autore.id}}">
+        <a th:href="@{'/modificaAutore/' + ${autore.id}}">
           <button class="ghost-round" style="background-color: rgba(255, 255, 255, 0.451);">Modifica Autore</button>
         </a>
       </div>
@@ -22,7 +22,7 @@
     <div class="book-detail-container">
     
     <div class="book-image">
-      <img th:src="@{'/' + ${autore.immagine}}" alt="Copertina libro" />
+      <img th:src="@{'/' + ${autore.immagine}}" alt="Immagine autore" />
     </div>
 
         <div class="book-info">

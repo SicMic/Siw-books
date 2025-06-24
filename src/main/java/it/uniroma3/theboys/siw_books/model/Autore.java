@@ -1,9 +1,6 @@
 package it.uniroma3.theboys.siw_books.model;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-
 import java.util.List;
 
 import jakarta.persistence.CascadeType;
@@ -13,7 +10,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
-import jakarta.persistence.OneToMany;
 
 @Entity
 public class Autore {
@@ -63,10 +59,8 @@ public class Autore {
         this.cognome = cognome;
     }
 
-    public String getDataNascita() {
-        if(this.dataNascita == null) return null;
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-        return dataNascita.format(formatter);
+    public LocalDate getDataNascita() {
+        return this.dataNascita;
     }
 
 
@@ -74,10 +68,8 @@ public class Autore {
         this.dataNascita = dataNascita;
     }
 
-    public String getDataMorte() {
-        if(this.dataMorte == null) return null;
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-        return dataMorte.format(formatter);
+    public LocalDate getDataMorte() {
+        return this.dataMorte;
     }
 
     public void setDataMorte(LocalDate dataMorte) {

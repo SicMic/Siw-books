@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <title>Nuovo Autore</title>
+    <th:block th:replace="~{moduli/head :: head}"></th:block>
+</head>
+
+<body>
+    <!-- Header fisso -->
+    <th:block th:replace="~{moduli/header :: header}"></th:block>
+
+    <!-- Contenuto principale -->
+    <div class="book-detail-container">
+        <form action="/modificaAutore" method="post" enctype="multipart/form-data">
+            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+            <input type="hidden" id="dataNascitaNascosta" th:value="${autore.dataNascita}">
+            <input type="hidden" id="dataMorteNascosta" th:value="${autore.dataMorte}">
+            <input type="hidden" th:field="${autore.id}" th:value="${autore.id}">
+            <input type="hidden" th:name="immagineAutore" th:value="${immagineAutore}">
+
+            <!-- <div class="book-image">
+                <img th:text="${libro.immagine}" alt="Copertina libro">
+            </div> -->
+            <div class="book-info">
+                <input type="text" class="book-title admin-input" th:field="${autore.nome}" th:value="${autore.nome}" placeholder="Nome autore"/>
+                <input type="text" class="book-title admin-input" th:field="${autore.cognome}" th:value="${autore.cognome}" placeholder="Cognome autore"/>
+                <label>Foto autore</label>
+                <div class="book-image">
+                    <input type="file" name="immagineFile" accept="image/*" th:value="${autore.immagine}"/>
+                </div>
+                <label>Data di nascita</label>
+                <input type="date" id="dataNascita" class="book-description admin-input" th:field="${autore.dataNascita}"/>
+                <label>Data di morte</label>
+                <input type="date" id="dataMorte" class="book-description admin-input" th:field="${autore.dataMorte}"/>
+                <input type="text" class="book-description admin-input" th:field="${autore.nazione}" th:value="${autore.nazione}" placeholder="Nazione"/>
+
+                <button type="submit" class="ghost-round">Modifica autore</button>
+            </div>
+        </form>
+    </div>
+</body>
+
+<script type="text/javascript">
+    window.addEventListener('DOMContentLoaded', function () {
+      const inputDataN = document.getElementById('dataNascita');
+      inputDataN.value = document.getElementById('dataNascitaNascosta').value; // YYYY-MM-DD
+      const inputDataM = document.getElementById('dataMorte');
+      inputDataM.value = document.getElementById('dataMorteNascosta').value; // YYYY-MM-DD
+    });
+  </script>
+
+</html>
