@@ -36,7 +36,6 @@ public class Recensione {
     @JoinColumn(name = "utente_id", nullable = false)
     private Utente utente;
 
-
     public Long getId() {
         return id;
     }

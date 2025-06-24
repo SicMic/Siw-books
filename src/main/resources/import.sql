@@ -82,3 +82,4 @@ SELECT setval('credenziali_seq', (SELECT MAX(id) FROM credenziali));
 SELECT setval('utente_seq', (SELECT MAX(id) FROM utente));
 SELECT setval('autore_seq', (SELECT MAX(id) FROM autore));
 SELECT setval('libro_seq', (SELECT MAX(id) FROM libro));
+SELECT setval('recensione_seq', (SELECT MAX(id) FROM recensione));

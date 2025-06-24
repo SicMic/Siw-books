@@ -17,7 +17,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import it.uniroma3.theboys.siw_books.model.Autore;
 import it.uniroma3.theboys.siw_books.model.Libro;
-import it.uniroma3.theboys.siw_books.model.Recensione;
 import it.uniroma3.theboys.siw_books.service.AutoreService;
 import it.uniroma3.theboys.siw_books.service.LibroService;
 import it.uniroma3.theboys.siw_books.service.RecensioneService;
@@ -71,21 +70,34 @@ public String aggiungiLibro(@ModelAttribute Libro libro,
 
 	@GetMapping("/autoreForm")
 	public String getAggiuntaNuovoAutore(Model model) {
-		model.addAttribute("autore", new Autore());
+		model.addAttribute("autoreNuovo", new Autore());
 		return "autoreForm.html";
 	}
 
 	@PostMapping("/aggiuntaAutore")
-	public String psotAggiuntaNuovoAutore(Model model, Autore autore) {
+	public String psotAggiuntaNuovoAutore(Model model,@ModelAttribute("autoreNuovo") Autore autore, @RequestParam("immagineFile") MultipartFile immagineFile) {
+		if (!immagineFile.isEmpty()) {
+			try {
+				// Salva il file nella cartella "copertine" dentro /static/images (es. src/main/resources/static/images/copertine)
+				String nomeFile = System.currentTimeMillis() + "_" + immagineFile.getOriginalFilename();
+				Path percorso = Paths.get("uploads/autori/" + nomeFile);
+	
+				// Assicura che la directory esista
+				Files.createDirectories(percorso.getParent());
+	
+				// Salva il file
+				Files.write(percorso, immagineFile.getBytes());
+	
+				// Imposta il path (visibile via web) nel libro
+				autore.setImmagine("uploads/autori/" + nomeFile);
+	
+			} catch (IOException e) {
+				e.printStackTrace();
+				// Puoi aggiungere logging o messaggi di errore nel model
+			}
+		}
 		this.autoreService.saveNewAutore(autore);
 		return "redirect:/";
-	}
-
-	@PostMapping("/aggiuntaRecensione")
-	public String postAggiuntaNuovaRecensione(Model model, Recensione recensione, HttpServletRequest request) {
-		this.recensioneService.saveNewRecensione(recensione);
-        String referer = request.getHeader("Referer");
-        return "redirect:" + referer; // Reindirizza alla pagina precedente	
 	}
 
 	@GetMapping("/eliminazioneLibro/{idLibro}")
