@@ -10,6 +10,16 @@
   <!-- Header fisso -->
   <th:block th:replace="~{moduli/header :: header}"></th:block>
 
+
+      <div style="z-index: 3; width: 100%;  position: fixed; height: 60px; margin-top: 40px; backdrop-filter: blur(2px); background-color: rgba(255, 255, 255, 0.001);" th:if='${ruolo.equals("admin")}'>
+      <div style="z-index: 100; position: fixed; right: 40px; margin-top: 15px;">
+        <a th:href="@{'/libroForm/' + ${libro.id}}">
+          <button class="ghost-round" style="background-color: rgba(255, 255, 255, 0.451);">Modifica Libro</button>
+        </a>
+      </div>
+    </div>
+
+
   <!-- Contenuto principale -->
   <div class="book-detail-container">
     <div class="book-top">
