@@ -15,7 +15,7 @@
 
 
   <div class="vetrina-bg">
-    <div style="z-index: 10; width: 100%;  position: fixed; height: 60px; margin-top: -10px; backdrop-filter: blur(2px); background-color: rgba(255, 255, 255, 0.001);" th:if='${ruolo.equals("admin")}'>
+    <div style="z-index: 3; width: 100%;  position: fixed; height: 60px; margin-top: -10px; backdrop-filter: blur(2px); background-color: rgba(255, 255, 255, 0.001);" th:if='${ruolo.equals("admin")}'>
       <div style="z-index: 100; position: fixed; right: 40px; margin-top: 15px;">
         <a href="/libroForm">
           <button class="ghost-round" style="background-color: rgba(255, 255, 255, 0.451);">Nuovo Libro</button>
@@ -37,7 +37,6 @@
               <p class="card-desc" th:text="${libro.descrizione}" style="position: static; margin: 0px;">Descrizione breve del prodotto 1.</p>
 
               <form th:if="${ruolo.equals('admin')}" th:action="@{'/eliminazioneLibro/' + ${libro.id}}" method="get" style="display: block; position: static; margin-top: -30px;">
-                <input type="hidden" name="id" th:value="${libro.id}" />
                 <button style="width: 100%; border-radius: 10px; border: 1px solid black; background-color:#e6eef9; color: red" type="submit" class="btn btn-danger">Elimina</button>
               </form>
 

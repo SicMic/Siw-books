@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import it.uniroma3.theboys.siw_books.model.Credenziali;
 import it.uniroma3.theboys.siw_books.model.Utente;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 
 import it.uniroma3.theboys.siw_books.service.CredenzialiService;
@@ -21,36 +22,38 @@ import it.uniroma3.theboys.siw_books.service.UtenteService;
 @Controller
 public class Autenticazione {
 
-	@Autowired
-	private CredenzialiService credenzialiService;
+    @Autowired
+    private CredenzialiService credenzialiService;
 
-	@Autowired
-	private UtenteService utenteService;
+    @Autowired
+    private UtenteService utenteService;
 
-	@GetMapping("/login")
-	public String login(Model model) {
-		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		if (authentication != null && authentication.isAuthenticated()
-				&& !(authentication instanceof AnonymousAuthenticationToken)) {
-			// Reindirizza l'utente a un'altra pagina se è già autenticato
-			return "redirect:/" + "checazzonesoio";
-		}
-		return "login.html"; // Mostra la pagina di login se non autenticato
-	}
+    @GetMapping("/login")
+    public String login(Model model, HttpServletRequest request) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null && authentication.isAuthenticated()
+                && !(authentication instanceof AnonymousAuthenticationToken)) {
+            String referer = request.getHeader("Referer");
+            return "redirect:" + referer; // Reindirizza alla pagina precedente
 
-	@GetMapping("/registrazione")
-	public String getRegistrazione(Model model) {
-		model.addAttribute("utenteNuovo", new Utente());
-		model.addAttribute("credenziali", new Credenziali());
-		return "registrazione"; // Rimuovi .html, Thymeleaf gestisce le estensioni
-	}
+        }
+        return "login.html"; // Mostra la pagina di login se non autenticato
+    }
+
+    @GetMapping("/registrazione")
+    public String getRegistrazione(Model model, HttpServletRequest request) {
+        model.addAttribute("utenteNuovo", new Utente());
+        model.addAttribute("credenziali", new Credenziali());
+        String referer = request.getHeader("Referer");
+        return "redirect:" + referer; // Reindirizza alla pagina precedente
+    }
 
     @PostMapping("/registrazione")
     public String registrazioneAutore(@Valid @ModelAttribute("utenteNuovo") Utente utente,
-                                       BindingResult userBindingResult,
-                                       @Valid @ModelAttribute("credenziali") Credenziali credenziali,
-                                       BindingResult credentialsBindingResult,
-                                       Model model) {
+            BindingResult userBindingResult,
+            @Valid @ModelAttribute("credenziali") Credenziali credenziali,
+            BindingResult credentialsBindingResult,
+            Model model) {
         if (userBindingResult.hasErrors() || credentialsBindingResult.hasErrors()) {
             return "registrazione"; // Ritorna al modulo con errori
         }

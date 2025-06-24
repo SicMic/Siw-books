@@ -1,5 +1,6 @@
 package it.uniroma3.theboys.siw_books.model;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -27,9 +28,9 @@ public class Autore {
     @Column(nullable = false)
     private String cognome;
 
-	private LocalDateTime dataNascita;
+	private LocalDate dataNascita;
 
-    private LocalDateTime dataMorte;
+    private LocalDate dataMorte;
 
     private String immagine;
 
@@ -64,22 +65,22 @@ public class Autore {
 
     public String getDataNascita() {
         if(this.dataNascita == null) return null;
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         return dataNascita.format(formatter);
     }
 
 
-    public void setDataNascita(LocalDateTime dataNascita) {
+    public void setDataNascita(LocalDate dataNascita) {
         this.dataNascita = dataNascita;
     }
 
     public String getDataMorte() {
         if(this.dataMorte == null) return null;
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         return dataMorte.format(formatter);
     }
 
-    public void setDataMorte(LocalDateTime dataMorte) {
+    public void setDataMorte(LocalDate dataMorte) {
         this.dataMorte = dataMorte;
     }
 
