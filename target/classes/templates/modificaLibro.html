@@ -26,7 +26,7 @@
                     <input type="file" name="copertinaFile" accept="image/*" th:value="${libro.copertina}"/>
                 </div>
                 <select name="listaAutori" multiple style="height: 150px;">
-                    <option th:each="autore : ${autori}" th:text="${autore.nome + ' ' + autore.cognome}" th:value="${autore.id}"></option>
+                    <option th:each="autore : ${listaAutori}" th:text="${autore.nome + ' ' + autore.cognome}" th:value="${autore.id}" th:selected="${libro.autori.contains(autore)}"></option>
                 </select>
 
                 <button type="submit" class="ghost-round">Modifica libro</button>

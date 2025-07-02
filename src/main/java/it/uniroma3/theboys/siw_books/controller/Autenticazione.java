@@ -13,11 +13,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import it.uniroma3.theboys.siw_books.model.Credenziali;
 import it.uniroma3.theboys.siw_books.model.Utente;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.validation.Valid;
-
 import it.uniroma3.theboys.siw_books.service.CredenzialiService;
 import it.uniroma3.theboys.siw_books.service.UtenteService;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.validation.Valid;
 
 @Controller
 public class Autenticazione {
@@ -41,11 +40,10 @@ public class Autenticazione {
     }
 
     @GetMapping("/registrazione")
-    public String getRegistrazione(Model model, HttpServletRequest request) {
+    public String getRegistrazione(Model model) {
         model.addAttribute("utenteNuovo", new Utente());
         model.addAttribute("credenziali", new Credenziali());
-        String referer = request.getHeader("Referer");
-        return "redirect:" + referer; // Reindirizza alla pagina precedente
+        return "registrazione.html";
     }
 
     @PostMapping("/registrazione")

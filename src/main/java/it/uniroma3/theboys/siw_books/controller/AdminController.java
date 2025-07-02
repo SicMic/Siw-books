@@ -176,12 +176,14 @@ public class AdminController {
 	@GetMapping("/modificaLibro/{idLibro}")
 	public String modificaLibro(Model model, @PathVariable("idLibro") Long idLibro) {
 		model.addAttribute("libro", libroService.getLibroById(idLibro));
+		model.addAttribute("listaAutori", autoreService.getAllAutori());
 		return "modificaLibro";
 	}
 
 	@PostMapping("/modificaLibro")
 	public String postModificaLibro(@ModelAttribute Libro libro,
-			@RequestParam("copertinaFile") MultipartFile copertinaFile) {
+			@RequestParam("copertinaFile") MultipartFile copertinaFile,
+			@RequestParam("listaAutori") List<Long> listaAutori) {
 		if (!copertinaFile.isEmpty()) {
 			try {
 				// Salva il file nella cartella "copertine" dentro /static/images (es.
@@ -205,6 +207,18 @@ public class AdminController {
 		} else {
 			libro.setCopertina((String) libroService.getLibroById(libro.getId()).getCopertina());
 		}
+
+		if (listaAutori != null && !listaAutori.isEmpty()) {
+			List<Autore> autoriSelezionati = new ArrayList<>();
+			for (Long autoreId : listaAutori) {
+				Autore autore = autoreService.getAutoreById(autoreId);
+				if (autore != null) {
+					autoriSelezionati.add(autore);
+				}
+			}
+			libro.setAutori(autoriSelezionati);
+		}
+
 		libroService.saveNewLibro(libro);
 		return "redirect:/index";
 	}
